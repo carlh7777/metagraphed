@@ -7,6 +7,10 @@ const files = {
   coverage: "public/metagraph/coverage.json",
   health: "public/metagraph/health/latest.json",
   rpc: "public/metagraph/rpc-endpoints.json",
+  rpcPools: "public/metagraph/rpc/pools.json",
+  freshness: "public/metagraph/freshness.json",
+  sourceHealth: "public/metagraph/source-health.json",
+  r2Manifest: "public/metagraph/r2-manifest.json",
   schemaDrift: "public/metagraph/schema-drift.json",
   adaptersAllways: "public/metagraph/adapters/allways.json",
   adaptersGittensor: "public/metagraph/adapters/gittensor.json"
@@ -46,11 +50,17 @@ lines.push(`- surface status: ${formatCounts(current.health?.summary?.status_cou
 lines.push(`- surface classifications: ${formatCounts(current.health?.summary?.classification_counts)}`);
 lines.push(`- RPC endpoints: ${formatCounts(current.rpc?.summary?.by_status)}`);
 lines.push(`- RPC archive-supported endpoints: ${current.rpc?.summary?.archive_supported_count ?? 0}`);
+lines.push(`- endpoint pools: ${(current.rpcPools?.pools || []).map((pool) => `${pool.id}: ${pool.eligible_count}/${pool.endpoint_count}`).join(", ") || "none"}`);
 lines.push("");
 lines.push("## Schema And Adapters");
 lines.push(`- OpenAPI drift: ${formatCounts(current.schemaDrift?.summary?.by_drift_status)}`);
 lines.push(`- Allways adapter: ${current.adaptersAllways?.snapshot?.status || "not-captured"}`);
 lines.push(`- Gittensor adapter: ${current.adaptersGittensor?.snapshot?.status || "not-captured"}`);
+lines.push("");
+lines.push("## Cloudflare Artifacts");
+lines.push(`- freshness native snapshot: ${current.freshness?.summary?.native_snapshot_captured_at || "unknown"}`);
+lines.push(`- source health: ${formatCounts(current.sourceHealth?.summary?.status_counts)}`);
+lines.push(`- R2 manifest artifacts: ${current.r2Manifest?.artifact_count ?? 0}`);
 lines.push("");
 lines.push("## Validation");
 lines.push("- `npm run validate`");
@@ -59,6 +69,11 @@ lines.push("- `npm run build`");
 lines.push("- `npm run schemas:snapshot`");
 lines.push("- `npm run adapters:snapshot`");
 lines.push("- `METAGRAPH_WRITE_PROBE_RESULTS=1 npm run probes:smoke`");
+lines.push("- `npm run validate:schemas`");
+lines.push("- `npm run validate:api`");
+lines.push("- `npm run validate:intake`");
+lines.push("- `npm run validate:workflows`");
+lines.push("- `npm run r2:manifest:dry-run`");
 lines.push("- `npm run scan:public-safety`");
 
 console.log(lines.join("\n"));

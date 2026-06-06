@@ -1,0 +1,56 @@
+{
+  "contract_version": "2026-06-06.1",
+  "generated_at": "1970-01-01T00:00:00.000Z",
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "adapter:allways",
+      "path": "registry/adapters/latest/allways.json",
+      "stale_after_hours": 12,
+      "status": "captured",
+      "timestamp": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "adapter:gittensor",
+      "path": "registry/adapters/latest/gittensor.json",
+      "stale_after_hours": 12,
+      "status": "degraded",
+      "timestamp": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "candidate-verification",
+      "path": "registry/verification/latest.json",
+      "stale_after_hours": 12,
+      "status": "captured",
+      "timestamp": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "native-subnets",
+      "path": "registry/native/finney-subnets.json",
+      "stale_after_hours": 24,
+      "status": "captured",
+      "timestamp": "2026-06-06T01:19:40Z"
+    },
+    {
+      "id": "schema-drift",
+      "path": "public/metagraph/schema-drift.json",
+      "stale_after_hours": 12,
+      "status": "captured",
+      "timestamp": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "surface-health",
+      "path": "public/metagraph/health/latest.json",
+      "stale_after_hours": 12,
+      "status": "captured",
+      "timestamp": "1970-01-01T00:00:00.000Z"
+    }
+  ],
+  "summary": {
+    "adapter_count": 2,
+    "health_surface_count": 589,
+    "native_snapshot_captured_at": "2026-06-06T01:19:40Z",
+    "openapi_surface_count": 1,
+    "verification_generated_at": "1970-01-01T00:00:00.000Z"
+  }
+}

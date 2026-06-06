@@ -9,6 +9,9 @@
     "providers": {
       "$ref": "#/$defs/providersArtifact"
     },
+    "api_index": {
+      "$ref": "#/$defs/genericArtifact"
+    },
     "subnets": {
       "$ref": "#/$defs/subnetsArtifact"
     },
@@ -17,6 +20,12 @@
     },
     "surfaces": {
       "$ref": "#/$defs/surfacesArtifact"
+    },
+    "candidates": {
+      "$ref": "#/$defs/genericArtifact"
+    },
+    "search": {
+      "$ref": "#/$defs/genericArtifact"
     },
     "coverage": {
       "$ref": "#/$defs/coverageArtifact"
@@ -30,14 +39,29 @@
     "verification": {
       "$ref": "#/$defs/verificationArtifact"
     },
+    "freshness": {
+      "$ref": "#/$defs/genericArtifact"
+    },
+    "source_health": {
+      "$ref": "#/$defs/genericArtifact"
+    },
+    "evidence_ledger": {
+      "$ref": "#/$defs/genericArtifact"
+    },
     "health": {
       "$ref": "#/$defs/healthArtifact"
     },
     "rpc_endpoints": {
       "$ref": "#/$defs/rpcEndpointsArtifact"
     },
+    "endpoint_pools": {
+      "$ref": "#/$defs/genericArtifact"
+    },
     "contracts": {
       "$ref": "#/$defs/contractsArtifact"
+    },
+    "r2_manifest": {
+      "$ref": "#/$defs/genericArtifact"
     },
     "schema_drift": {
       "$ref": "#/$defs/schemaDriftArtifact"
@@ -85,6 +109,13 @@
               "type": "array"
             }
           }
+        }
+      ]
+    },
+    "genericArtifact": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/artifactBase"
         }
       ]
     },

@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-85",
   "summary": {
-    "avg_latency_ms": 302,
+    "avg_latency_ms": 350,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:44.441Z",
-    "last_ok": "2026-06-06T08:24:44.441Z",
+    "last_checked": "2026-06-06T08:58:03.411Z",
+    "last_ok": "2026-06-06T08:58:03.411Z",
     "name": "Vidaio",
     "netuid": 85,
     "ok_count": 4,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:44.086Z",
-      "last_ok": "2026-06-06T08:24:44.086Z",
-      "latency_ms": 154,
+      "last_checked": "2026-06-06T08:58:03.057Z",
+      "last_ok": "2026-06-06T08:58:03.057Z",
+      "latency_ms": 148,
       "method_tested": "HEAD",
       "netuid": 85,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-85-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/85",
-      "verified_at": "2026-06-06T08:24:44.086Z"
+      "verified_at": "2026-06-06T08:58:03.057Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:44.441Z",
-      "last_ok": "2026-06-06T08:24:44.441Z",
-      "latency_ms": 430,
+      "last_checked": "2026-06-06T08:58:03.363Z",
+      "last_ok": "2026-06-06T08:58:03.363Z",
+      "latency_ms": 428,
       "method_tested": "HEAD",
       "netuid": 85,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-85-taomarketcap-source-repo",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/vidaio-subnet/vidaio-subnet",
-      "verified_at": "2026-06-06T08:24:44.441Z"
+      "verified_at": "2026-06-06T08:58:03.363Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:44.312Z",
-      "last_ok": "2026-06-06T08:24:44.312Z",
-      "latency_ms": 293,
+      "last_checked": "2026-06-06T08:58:03.398Z",
+      "last_ok": "2026-06-06T08:58:03.398Z",
+      "latency_ms": 427,
       "method_tested": "HEAD",
       "netuid": 85,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-85-taomarketcap-website",
       "uptime_sample_ratio": 1,
       "url": "https://vidaio.io/",
-      "verified_at": "2026-06-06T08:24:44.312Z"
+      "verified_at": "2026-06-06T08:58:03.398Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:44.380Z",
-      "last_ok": "2026-06-06T08:24:44.380Z",
-      "latency_ms": 332,
+      "last_checked": "2026-06-06T08:58:03.411Z",
+      "last_ok": "2026-06-06T08:58:03.411Z",
+      "latency_ms": 396,
       "method_tested": "HEAD",
       "netuid": 85,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-85-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/85",
-      "verified_at": "2026-06-06T08:24:44.380Z"
+      "verified_at": "2026-06-06T08:58:03.411Z"
     }
   ]
 }

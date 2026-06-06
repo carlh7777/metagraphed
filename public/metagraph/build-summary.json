@@ -1,7 +1,7 @@
 {
   "adapter_count": 2,
-  "artifact_count": 411,
-  "artifact_size_bytes": 11006642,
+  "artifact_count": 417,
+  "artifact_size_bytes": 11926617,
   "artifacts": [
     {
       "path": "adapters/allways.json",
@@ -12,12 +12,16 @@
       "size_bytes": 4993
     },
     {
+      "path": "api-index.json",
+      "size_bytes": 5904
+    },
+    {
       "path": "candidates.json",
       "size_bytes": 1845806
     },
     {
       "path": "contracts.json",
-      "size_bytes": 4926
+      "size_bytes": 6635
     },
     {
       "path": "coverage.json",
@@ -26,6 +30,14 @@
     {
       "path": "curation.json",
       "size_bytes": 151847
+    },
+    {
+      "path": "evidence-ledger.json",
+      "size_bytes": 572789
+    },
+    {
+      "path": "freshness.json",
+      "size_bytes": 1572
     },
     {
       "path": "gaps.json",
@@ -549,7 +561,7 @@
     },
     {
       "path": "health/history/2026-06-06.json",
-      "size_bytes": 485303
+      "size_bytes": 485203
     },
     {
       "path": "health/latest.json",
@@ -990,18 +1002,6 @@
     {
       "path": "health/subnets/80.json",
       "size_bytes": 2705
-    },
-    {
-      "path": "health/subnets/81.json",
-      "size_bytes": 4510
-    },
-    {
-      "path": "health/subnets/82.json",
-      "size_bytes": 4413
-    },
-    {
-      "path": "health/subnets/83.json",
-      "size_bytes": 2704
     }
   ],
   "candidate_count": 845,

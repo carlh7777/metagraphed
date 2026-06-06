@@ -1,0 +1,35 @@
+import { promises as fs } from "node:fs";
+import path from "node:path";
+import { repoRoot } from "./lib.mjs";
+
+const workflowRoot = path.join(repoRoot, ".github/workflows");
+const workflows = (await fs.readdir(workflowRoot))
+  .filter((name) => name.endsWith(".yml") || name.endsWith(".yaml"))
+  .sort();
+const errors = [];
+
+for (const workflow of workflows) {
+  const content = await fs.readFile(path.join(workflowRoot, workflow), "utf8");
+  check(content.includes("permissions:"), workflow, "missing top-level permissions");
+  check(content.includes("concurrency:"), workflow, "missing concurrency guard");
+  check(!/\bcontinue-on-error:\s*true\b/.test(content), workflow, "must not mask failures with continue-on-error");
+  check(!/\$\{\{\s*github\.event\.(issue|comment|pull_request)\.(body|title)/.test(content), workflow, "untrusted GitHub event text is interpolated directly");
+  check(!/run:\s*\|[\s\S]*<<EOF/.test(content), workflow, "predictable heredoc delimiter in run block");
+  check(/uses:\s+actions\/checkout@/.test(content), workflow, "missing checkout action");
+}
+
+if (errors.length > 0) {
+  console.error(`Workflow validation failed with ${errors.length} issue(s):`);
+  for (const error of errors) {
+    console.error(`- ${error}`);
+  }
+  process.exit(1);
+}
+
+console.log(`Validated ${workflows.length} workflow file(s).`);
+
+function check(condition, workflow, message) {
+  if (!condition) {
+    errors.push(`${workflow}: ${message}`);
+  }
+}

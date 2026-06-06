@@ -1,0 +1,33 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "metagraphed",
+  "main": "workers/api.mjs",
+  "compatibility_date": "2026-06-06",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/api/*",
+      "/rpc/*"
+    ],
+    "not_found_handling": "404-page"
+  },
+  "vars": {
+    "METAGRAPH_CONTRACT_VERSION": "2026-06-06.1",
+    "METAGRAPH_ENABLE_RPC_PROXY": "false",
+    "METAGRAPH_R2_LATEST_PREFIX": "latest/"
+  },
+  "r2_buckets": [
+    {
+      "binding": "METAGRAPH_ARCHIVE",
+      "bucket_name": "metagraphed-artifacts"
+    }
+  ]
+}

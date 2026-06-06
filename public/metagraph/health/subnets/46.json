@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-46",
   "summary": {
-    "avg_latency_ms": 415,
+    "avg_latency_ms": 360,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:40.454Z",
-    "last_ok": "2026-06-06T08:24:40.454Z",
+    "last_checked": "2026-06-06T08:57:58.975Z",
+    "last_ok": "2026-06-06T08:57:58.975Z",
     "name": "Zipcode",
     "netuid": 46,
     "ok_count": 9,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "data-artifact",
-      "last_checked": "2026-06-06T08:24:40.358Z",
-      "last_ok": "2026-06-06T08:24:40.358Z",
-      "latency_ms": 604,
+      "last_checked": "2026-06-06T08:57:58.843Z",
+      "last_ok": "2026-06-06T08:57:58.843Z",
+      "latency_ms": 536,
       "method_tested": "HEAD",
       "netuid": 46,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-46-github-readme-resi-labs-ai-resi-data-artifact-1",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/resi-labs-ai/resi-models",
-      "verified_at": "2026-06-06T08:24:40.358Z"
+      "verified_at": "2026-06-06T08:57:58.843Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:40.411Z",
-      "last_ok": "2026-06-06T08:24:40.411Z",
-      "latency_ms": 640,
+      "last_checked": "2026-06-06T08:57:58.967Z",
+      "last_ok": "2026-06-06T08:57:58.967Z",
+      "latency_ms": 616,
       "method_tested": "HEAD",
       "netuid": 46,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-46-github-readme-resi-labs-ai-resi-website-2",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/resi-labs-ai/resi",
-      "verified_at": "2026-06-06T08:24:40.411Z"
+      "verified_at": "2026-06-06T08:57:58.967Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:39.854Z",
-      "last_ok": "2026-06-06T08:24:39.854Z",
-      "latency_ms": 76,
+      "last_checked": "2026-06-06T08:57:58.445Z",
+      "last_ok": "2026-06-06T08:57:58.445Z",
+      "latency_ms": 86,
       "method_tested": "HEAD",
       "netuid": 46,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-46-github-readme-resi-labs-ai-resi-website-6",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/macrocosm-os/data-universe",
-      "verified_at": "2026-06-06T08:24:39.854Z"
+      "verified_at": "2026-06-06T08:57:58.445Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:39.930Z",
-      "last_ok": "2026-06-06T08:24:39.930Z",
-      "latency_ms": 141,
+      "last_checked": "2026-06-06T08:57:58.491Z",
+      "last_ok": "2026-06-06T08:57:58.491Z",
+      "latency_ms": 132,
       "method_tested": "HEAD",
       "netuid": 46,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-46-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/46",
-      "verified_at": "2026-06-06T08:24:39.930Z"
+      "verified_at": "2026-06-06T08:57:58.491Z"
     },
     {
       "auth_required": false,
@@ -127,9 +127,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:40.346Z",
-      "last_ok": "2026-06-06T08:24:40.346Z",
-      "latency_ms": 545,
+      "last_checked": "2026-06-06T08:57:58.748Z",
+      "last_ok": "2026-06-06T08:57:58.748Z",
+      "latency_ms": 385,
       "method_tested": "HEAD",
       "netuid": 46,
       "private_redirect_blocked": false,
@@ -143,7 +143,7 @@
       "surface_id": "sn-46-taomarketcap-source-repo",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/resi-labs-ai/RESI-models",
-      "verified_at": "2026-06-06T08:24:40.346Z"
+      "verified_at": "2026-06-06T08:57:58.748Z"
     },
     {
       "auth_required": false,
@@ -152,9 +152,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:40.318Z",
-      "last_ok": "2026-06-06T08:24:40.318Z",
-      "latency_ms": 500,
+      "last_checked": "2026-06-06T08:57:58.821Z",
+      "last_ok": "2026-06-06T08:57:58.821Z",
+      "latency_ms": 399,
       "method_tested": "HEAD",
       "netuid": 46,
       "private_redirect_blocked": false,
@@ -168,7 +168,7 @@
       "surface_id": "sn-46-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/46",
-      "verified_at": "2026-06-06T08:24:40.318Z"
+      "verified_at": "2026-06-06T08:57:58.821Z"
     },
     {
       "auth_required": false,
@@ -177,9 +177,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:40.406Z",
-      "last_ok": "2026-06-06T08:24:40.406Z",
-      "latency_ms": 552,
+      "last_checked": "2026-06-06T08:57:58.966Z",
+      "last_ok": "2026-06-06T08:57:58.966Z",
+      "latency_ms": 520,
       "method_tested": "HEAD",
       "netuid": 46,
       "private_redirect_blocked": false,
@@ -193,7 +193,7 @@
       "surface_id": "sn-46-tensorplex-source-repo-1",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/resi-labs-ai/resi",
-      "verified_at": "2026-06-06T08:24:40.406Z"
+      "verified_at": "2026-06-06T08:57:58.966Z"
     },
     {
       "auth_required": false,
@@ -202,9 +202,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:40.454Z",
-      "last_ok": "2026-06-06T08:24:40.454Z",
-      "latency_ms": 600,
+      "last_checked": "2026-06-06T08:57:58.975Z",
+      "last_ok": "2026-06-06T08:57:58.975Z",
+      "latency_ms": 484,
       "method_tested": "HEAD",
       "netuid": 46,
       "private_redirect_blocked": false,
@@ -218,7 +218,7 @@
       "surface_id": "sn-46-tensorplex-source-repo-2",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/resi-labs-ai/resi-labs-api",
-      "verified_at": "2026-06-06T08:24:40.454Z"
+      "verified_at": "2026-06-06T08:57:58.975Z"
     },
     {
       "auth_required": false,
@@ -227,8 +227,8 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:40.010Z",
-      "last_ok": "2026-06-06T08:24:40.010Z",
+      "last_checked": "2026-06-06T08:57:58.603Z",
+      "last_ok": "2026-06-06T08:57:58.603Z",
       "latency_ms": 81,
       "method_tested": "HEAD",
       "netuid": 46,
@@ -243,7 +243,7 @@
       "surface_id": "sn-46-website-common-docs-o36adh",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/docs",
-      "verified_at": "2026-06-06T08:24:40.010Z"
+      "verified_at": "2026-06-06T08:57:58.603Z"
     }
   ]
 }

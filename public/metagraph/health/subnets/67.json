@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-67",
   "summary": {
-    "avg_latency_ms": 292,
+    "avg_latency_ms": 521,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:42.675Z",
-    "last_ok": "2026-06-06T08:24:42.675Z",
+    "last_checked": "2026-06-06T08:58:01.671Z",
+    "last_ok": "2026-06-06T08:58:01.671Z",
     "name": "Harnyx",
     "netuid": 67,
     "ok_count": 5,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:42.314Z",
-      "last_ok": "2026-06-06T08:24:42.314Z",
-      "latency_ms": 255,
+      "last_checked": "2026-06-06T08:58:01.527Z",
+      "last_ok": "2026-06-06T08:58:01.527Z",
+      "latency_ms": 696,
       "method_tested": "HEAD",
       "netuid": 67,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-67-github-readme-harnyx-harnyx-dashboard-1",
       "uptime_sample_ratio": 1,
       "url": "https://dashboard.harnyx.ai/benchmark",
-      "verified_at": "2026-06-06T08:24:42.314Z"
+      "verified_at": "2026-06-06T08:58:01.527Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:42.199Z",
-      "last_ok": "2026-06-06T08:24:42.199Z",
-      "latency_ms": 139,
+      "last_checked": "2026-06-06T08:58:01.002Z",
+      "last_ok": "2026-06-06T08:58:01.002Z",
+      "latency_ms": 167,
       "method_tested": "HEAD",
       "netuid": 67,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-67-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/67",
-      "verified_at": "2026-06-06T08:24:42.199Z"
+      "verified_at": "2026-06-06T08:58:01.002Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:42.322Z",
-      "last_ok": "2026-06-06T08:24:42.322Z",
-      "latency_ms": 218,
+      "last_checked": "2026-06-06T08:58:01.671Z",
+      "last_ok": "2026-06-06T08:58:01.671Z",
+      "latency_ms": 830,
       "method_tested": "HEAD",
       "netuid": 67,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-67-taomarketcap-website",
       "uptime_sample_ratio": 1,
       "url": "https://harnyx.ai/",
-      "verified_at": "2026-06-06T08:24:42.322Z"
+      "verified_at": "2026-06-06T08:58:01.671Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:42.455Z",
-      "last_ok": "2026-06-06T08:24:42.455Z",
-      "latency_ms": 320,
+      "last_checked": "2026-06-06T08:58:01.300Z",
+      "last_ok": "2026-06-06T08:58:01.300Z",
+      "latency_ms": 409,
       "method_tested": "HEAD",
       "netuid": 67,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-67-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/67",
-      "verified_at": "2026-06-06T08:24:42.455Z"
+      "verified_at": "2026-06-06T08:58:01.300Z"
     },
     {
       "auth_required": false,
@@ -127,9 +127,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:42.675Z",
-      "last_ok": "2026-06-06T08:24:42.675Z",
-      "latency_ms": 528,
+      "last_checked": "2026-06-06T08:58:01.435Z",
+      "last_ok": "2026-06-06T08:58:01.435Z",
+      "latency_ms": 501,
       "method_tested": "HEAD",
       "netuid": 67,
       "private_redirect_blocked": false,
@@ -143,7 +143,7 @@
       "surface_id": "sn-67-tensorplex-source-repo-1",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/harnyx/harnyx",
-      "verified_at": "2026-06-06T08:24:42.675Z"
+      "verified_at": "2026-06-06T08:58:01.435Z"
     }
   ]
 }

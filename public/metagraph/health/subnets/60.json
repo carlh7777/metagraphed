@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-60",
   "summary": {
-    "avg_latency_ms": 420,
+    "avg_latency_ms": 460,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:42.059Z",
-    "last_ok": "2026-06-06T08:24:42.059Z",
+    "last_checked": "2026-06-06T08:58:01.116Z",
+    "last_ok": "2026-06-06T08:58:01.116Z",
     "name": "Bitsec.ai",
     "netuid": 60,
     "ok_count": 6,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:41.904Z",
-      "last_ok": "2026-06-06T08:24:41.904Z",
-      "latency_ms": 630,
+      "last_checked": "2026-06-06T08:58:01.116Z",
+      "last_ok": "2026-06-06T08:58:01.116Z",
+      "latency_ms": 1140,
       "method_tested": "HEAD",
       "netuid": 60,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-60-github-readme-bitsec-ai-subnet-docs-2",
       "uptime_sample_ratio": 1,
       "url": "https://learnbittensor.org/guides",
-      "verified_at": "2026-06-06T08:24:41.904Z"
+      "verified_at": "2026-06-06T08:58:01.116Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:41.416Z",
-      "last_ok": "2026-06-06T08:24:41.416Z",
-      "latency_ms": 140,
+      "last_checked": "2026-06-06T08:58:00.138Z",
+      "last_ok": "2026-06-06T08:58:00.138Z",
+      "latency_ms": 161,
       "method_tested": "HEAD",
       "netuid": 60,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-60-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/60",
-      "verified_at": "2026-06-06T08:24:41.416Z"
+      "verified_at": "2026-06-06T08:58:00.138Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:41.877Z",
-      "last_ok": "2026-06-06T08:24:41.877Z",
-      "latency_ms": 601,
+      "last_checked": "2026-06-06T08:58:00.572Z",
+      "last_ok": "2026-06-06T08:58:00.572Z",
+      "latency_ms": 565,
       "method_tested": "HEAD",
       "netuid": 60,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-60-taomarketcap-source-repo",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/Bitsec-AI/sandbox",
-      "verified_at": "2026-06-06T08:24:41.877Z"
+      "verified_at": "2026-06-06T08:58:00.572Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:41.542Z",
-      "last_ok": "2026-06-06T08:24:41.542Z",
-      "latency_ms": 183,
+      "last_checked": "2026-06-06T08:58:00.180Z",
+      "last_ok": "2026-06-06T08:58:00.180Z",
+      "latency_ms": 158,
       "method_tested": "HEAD",
       "netuid": 60,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-60-taomarketcap-website",
       "uptime_sample_ratio": 1,
       "url": "https://bitsec.ai/",
-      "verified_at": "2026-06-06T08:24:41.542Z"
+      "verified_at": "2026-06-06T08:58:00.180Z"
     },
     {
       "auth_required": false,
@@ -127,9 +127,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:41.682Z",
-      "last_ok": "2026-06-06T08:24:41.682Z",
-      "latency_ms": 321,
+      "last_checked": "2026-06-06T08:58:00.422Z",
+      "last_ok": "2026-06-06T08:58:00.422Z",
+      "latency_ms": 386,
       "method_tested": "HEAD",
       "netuid": 60,
       "private_redirect_blocked": false,
@@ -143,7 +143,7 @@
       "surface_id": "sn-60-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/60",
-      "verified_at": "2026-06-06T08:24:41.682Z"
+      "verified_at": "2026-06-06T08:58:00.422Z"
     },
     {
       "auth_required": false,
@@ -152,9 +152,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:42.059Z",
-      "last_ok": "2026-06-06T08:24:42.059Z",
-      "latency_ms": 643,
+      "last_checked": "2026-06-06T08:58:00.388Z",
+      "last_ok": "2026-06-06T08:58:00.388Z",
+      "latency_ms": 351,
       "method_tested": "HEAD",
       "netuid": 60,
       "private_redirect_blocked": false,
@@ -168,7 +168,7 @@
       "surface_id": "sn-60-tensorplex-source-repo-1",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/Bitsec-AI/subnet",
-      "verified_at": "2026-06-06T08:24:42.059Z"
+      "verified_at": "2026-06-06T08:58:00.388Z"
     }
   ]
 }

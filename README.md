@@ -24,6 +24,7 @@ Example routes:
 - a deterministic JSON artifact generator;
 - a probe surface for safe public endpoints;
 - a status layer for APIs, schemas, and public data surfaces;
+- a Cloudflare-backed API/cache/history layer;
 - a foundation for future hosted/cache/load-balanced subnet access.
 
 ## What This Is Not
@@ -72,13 +73,20 @@ Credentialed flows, wallet paths, validator-sensitive internals, private dashboa
 Generated public artifacts live under `public/metagraph`:
 
 - `subnets.json`
+- `api-index.json`
 - `surfaces.json`
 - `rpc-endpoints.json`
+- `rpc/pools.json`
 - `candidates.json`
 - `review-queue.json`
 - `curation.json`
 - `gaps.json`
 - `providers.json`
+- `search.json`
+- `freshness.json`
+- `source-health.json`
+- `evidence-ledger.json`
+- `r2-manifest.json`
 - `metagraph/latest.json`
 - `health/latest.json`
 - `health/summary.json`
@@ -100,6 +108,19 @@ Generated public artifacts live under `public/metagraph`:
 
 The generated files are deterministic and suitable for static hosting, CI review, and downstream consumption.
 
+Worker API routes expose stable envelopes over the same canonical artifacts:
+
+- `/api/v1/subnets`
+- `/api/v1/subnets/{netuid}`
+- `/api/v1/surfaces`
+- `/api/v1/providers`
+- `/api/v1/health`
+- `/api/v1/rpc/endpoints`
+- `/api/v1/rpc/pools`
+- `/api/v1/schemas`
+- `/api/v1/adapters/{slug}`
+- `/api/v1/search`
+
 ## Local Commands
 
 ```bash
@@ -114,6 +135,12 @@ npm run curate:baseline:dry-run
 npm run review:promote:dry-run
 npm run schemas:snapshot:dry-run
 npm run adapters:snapshot:dry-run
+npm run validate:schemas
+npm run validate:api
+npm run validate:intake
+npm run validate:workflows
+npm run r2:manifest:dry-run
+npm run worker:deploy:dry-run
 npm run probes:smoke
 ```
 
@@ -133,6 +160,8 @@ npm run probes:smoke
 
 `probes:smoke` performs read-only checks against public surfaces. It does not submit transactions, mutate subnet state, send wallet data, or use credentials.
 
+`r2:manifest` generates the Cloudflare R2 upload manifest for the current artifact tree. `r2:upload` and `kv:publish` require explicit write flags so local validation cannot accidentally publish.
+
 ## Repository Layout
 
 ```text
@@ -145,6 +174,7 @@ registry/subnets/     curated subnet interface overlays
 registry/verification/ generated candidate verification snapshots
 schemas/              public JSON schema contracts
 scripts/              validation, artifact generation, probe, and safety scripts
+workers/              Cloudflare Worker API routes over static artifacts
 public/metagraph/     generated public JSON artifacts
 tests/                node test runner checks
 ```

@@ -9,6 +9,10 @@ permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: sync-subnets
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -63,11 +67,29 @@ jobs:
         env:
           METAGRAPH_WRITE_PROBE_RESULTS: "1"
 
+      - name: Generate R2 manifest
+        run: npm run r2:manifest
+
       - name: Validate registry
         run: npm run validate
 
       - name: Test
         run: npm test
+
+      - name: Validate JSON schemas
+        run: npm run validate:schemas
+
+      - name: Validate Worker API
+        run: npm run validate:api
+
+      - name: Validate intake templates
+        run: npm run validate:intake
+
+      - name: Validate workflows
+        run: npm run validate:workflows
+
+      - name: Validate R2 manifest
+        run: npm run r2:manifest:dry-run
 
       - name: Public-safety scan
         run: npm run scan:public-safety

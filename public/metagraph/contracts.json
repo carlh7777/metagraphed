@@ -10,6 +10,13 @@
     {
       "content_type": "application/json",
       "contract_version": "2026-06-06.1",
+      "description": "Clean API route index for metagraph.sh consumers.",
+      "id": "api-index",
+      "path": "/metagraph/api-index.json"
+    },
+    {
+      "content_type": "application/json",
+      "contract_version": "2026-06-06.1",
       "description": "All active Finney subnets with compact registry metadata.",
       "id": "subnets",
       "path": "/metagraph/subnets.json"
@@ -38,6 +45,13 @@
     {
       "content_type": "application/json",
       "contract_version": "2026-06-06.1",
+      "description": "Compact search index for subnets, surfaces, and providers.",
+      "id": "search",
+      "path": "/metagraph/search.json"
+    },
+    {
+      "content_type": "application/json",
+      "contract_version": "2026-06-06.1",
       "description": "Registry coverage counts and source precedence.",
       "id": "coverage",
       "path": "/metagraph/coverage.json"
@@ -62,6 +76,27 @@
       "description": "Latest candidate verification snapshot.",
       "id": "verification",
       "path": "/metagraph/verification/latest.json"
+    },
+    {
+      "content_type": "application/json",
+      "contract_version": "2026-06-06.1",
+      "description": "Freshness and staleness summary for generated backend data.",
+      "id": "freshness",
+      "path": "/metagraph/freshness.json"
+    },
+    {
+      "content_type": "application/json",
+      "contract_version": "2026-06-06.1",
+      "description": "Upstream source and provider health summary.",
+      "id": "source-health",
+      "path": "/metagraph/source-health.json"
+    },
+    {
+      "content_type": "application/json",
+      "contract_version": "2026-06-06.1",
+      "description": "Public evidence ledger for subnet and surface claims.",
+      "id": "evidence-ledger",
+      "path": "/metagraph/evidence-ledger.json"
     },
     {
       "content_type": "application/json",
@@ -101,6 +136,13 @@
     {
       "content_type": "application/json",
       "contract_version": "2026-06-06.1",
+      "description": "Endpoint pool scoring for future read-only RPC routing.",
+      "id": "rpc-pools",
+      "path": "/metagraph/rpc/pools.json"
+    },
+    {
+      "content_type": "application/json",
+      "contract_version": "2026-06-06.1",
       "description": "OpenAPI schema snapshot/drift status.",
       "id": "schema-drift",
       "path": "/metagraph/schema-drift.json"
@@ -111,6 +153,13 @@
       "description": "Index of captured machine-readable schemas.",
       "id": "schema-index",
       "path": "/metagraph/schemas/index.json"
+    },
+    {
+      "content_type": "application/json",
+      "contract_version": "2026-06-06.1",
+      "description": "R2 upload manifest for generated artifact history.",
+      "id": "r2-manifest",
+      "path": "/metagraph/r2-manifest.json"
     },
     {
       "content_type": "application/json",

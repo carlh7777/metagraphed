@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-11",
   "summary": {
-    "avg_latency_ms": 358,
+    "avg_latency_ms": 350,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:37.186Z",
-    "last_ok": "2026-06-06T08:24:37.186Z",
+    "last_checked": "2026-06-06T08:57:55.680Z",
+    "last_ok": "2026-06-06T08:57:55.680Z",
     "name": "TrajectoryRL",
     "netuid": 11,
     "ok_count": 4,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:36.968Z",
-      "last_ok": "2026-06-06T08:24:36.968Z",
-      "latency_ms": 254,
+      "last_checked": "2026-06-06T08:57:55.328Z",
+      "last_ok": "2026-06-06T08:57:55.328Z",
+      "latency_ms": 155,
       "method_tested": "HEAD",
       "netuid": 11,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-11-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/11",
-      "verified_at": "2026-06-06T08:24:36.968Z"
+      "verified_at": "2026-06-06T08:57:55.328Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:37.141Z",
-      "last_ok": "2026-06-06T08:24:37.141Z",
-      "latency_ms": 427,
+      "last_checked": "2026-06-06T08:57:55.680Z",
+      "last_ok": "2026-06-06T08:57:55.680Z",
+      "latency_ms": 458,
       "method_tested": "HEAD",
       "netuid": 11,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-11-taomarketcap-source-repo",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/trajectoryRL/trajectoryRL",
-      "verified_at": "2026-06-06T08:24:37.141Z"
+      "verified_at": "2026-06-06T08:57:55.680Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:37.080Z",
-      "last_ok": "2026-06-06T08:24:37.080Z",
-      "latency_ms": 327,
+      "last_checked": "2026-06-06T08:57:55.680Z",
+      "last_ok": "2026-06-06T08:57:55.680Z",
+      "latency_ms": 429,
       "method_tested": "HEAD",
       "netuid": 11,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-11-taomarketcap-website",
       "uptime_sample_ratio": 1,
       "url": "https://trajrl.com/",
-      "verified_at": "2026-06-06T08:24:37.080Z"
+      "verified_at": "2026-06-06T08:57:55.680Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:37.186Z",
-      "last_ok": "2026-06-06T08:24:37.186Z",
-      "latency_ms": 422,
+      "last_checked": "2026-06-06T08:57:55.674Z",
+      "last_ok": "2026-06-06T08:57:55.674Z",
+      "latency_ms": 357,
       "method_tested": "HEAD",
       "netuid": 11,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-11-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/11",
-      "verified_at": "2026-06-06T08:24:37.186Z"
+      "verified_at": "2026-06-06T08:57:55.674Z"
     }
   ]
 }

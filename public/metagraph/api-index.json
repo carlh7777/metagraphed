@@ -1,0 +1,226 @@
+{
+  "artifact_contracts": [
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "providers",
+      "path": "/metagraph/providers.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "api-index",
+      "path": "/metagraph/api-index.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "subnets",
+      "path": "/metagraph/subnets.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "subnet-detail",
+      "path": "/metagraph/subnets/{netuid}.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "surfaces",
+      "path": "/metagraph/surfaces.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "candidates",
+      "path": "/metagraph/candidates.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "search",
+      "path": "/metagraph/search.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "coverage",
+      "path": "/metagraph/coverage.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "curation",
+      "path": "/metagraph/curation.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "gaps",
+      "path": "/metagraph/gaps.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "verification",
+      "path": "/metagraph/verification/latest.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "freshness",
+      "path": "/metagraph/freshness.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "source-health",
+      "path": "/metagraph/source-health.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "evidence-ledger",
+      "path": "/metagraph/evidence-ledger.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "health-latest",
+      "path": "/metagraph/health/latest.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "health-summary",
+      "path": "/metagraph/health/summary.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "health-subnet",
+      "path": "/metagraph/health/subnets/{netuid}.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "health-badge",
+      "path": "/metagraph/health/badges/{netuid}.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "rpc-endpoints",
+      "path": "/metagraph/rpc-endpoints.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "rpc-pools",
+      "path": "/metagraph/rpc/pools.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "schema-drift",
+      "path": "/metagraph/schema-drift.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "schema-index",
+      "path": "/metagraph/schemas/index.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "r2-manifest",
+      "path": "/metagraph/r2-manifest.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "review-curation",
+      "path": "/metagraph/review/curation.json"
+    },
+    {
+      "contract_version": "2026-06-06.1",
+      "id": "review-decisions",
+      "path": "/metagraph/review/maintainer-decisions.json"
+    }
+  ],
+  "base_path": "/api/v1",
+  "contract_version": "2026-06-06.1",
+  "generated_at": "1970-01-01T00:00:00.000Z",
+  "primary_domain": "metagraph.sh",
+  "response_envelope": {
+    "fields": [
+      "ok",
+      "data",
+      "meta",
+      "error"
+    ],
+    "notes": "Worker API routes wrap canonical /metagraph artifacts without changing artifact truth.",
+    "schema_version": 1
+  },
+  "routes": [
+    {
+      "artifact_path": "/metagraph/subnets.json",
+      "cache": "standard",
+      "description": "List active Finney subnets.",
+      "method": "GET",
+      "path": "/api/v1/subnets",
+      "public": true
+    },
+    {
+      "artifact_path": "/metagraph/subnets/{netuid}.json",
+      "cache": "standard",
+      "description": "Fetch per-subnet detail.",
+      "method": "GET",
+      "path": "/api/v1/subnets/{netuid}",
+      "public": true
+    },
+    {
+      "artifact_path": "/metagraph/surfaces.json",
+      "cache": "standard",
+      "description": "List curated public surfaces.",
+      "method": "GET",
+      "path": "/api/v1/surfaces",
+      "public": true
+    },
+    {
+      "artifact_path": "/metagraph/providers.json",
+      "cache": "standard",
+      "description": "List providers and sources.",
+      "method": "GET",
+      "path": "/api/v1/providers",
+      "public": true
+    },
+    {
+      "artifact_path": "/metagraph/health/summary.json",
+      "cache": "short",
+      "description": "Fetch global health summary.",
+      "method": "GET",
+      "path": "/api/v1/health",
+      "public": true
+    },
+    {
+      "artifact_path": "/metagraph/rpc-endpoints.json",
+      "cache": "short",
+      "description": "Fetch Bittensor RPC endpoint status.",
+      "method": "GET",
+      "path": "/api/v1/rpc/endpoints",
+      "public": true
+    },
+    {
+      "artifact_path": "/metagraph/rpc/pools.json",
+      "cache": "short",
+      "description": "Fetch endpoint pool scores.",
+      "method": "GET",
+      "path": "/api/v1/rpc/pools",
+      "public": true
+    },
+    {
+      "artifact_path": "/metagraph/schemas/index.json",
+      "cache": "standard",
+      "description": "Fetch captured schema index.",
+      "method": "GET",
+      "path": "/api/v1/schemas",
+      "public": true
+    },
+    {
+      "artifact_path": "/metagraph/adapters/{slug}.json",
+      "cache": "standard",
+      "description": "Fetch adapter-backed public metrics.",
+      "method": "GET",
+      "path": "/api/v1/adapters/{slug}",
+      "public": true
+    },
+    {
+      "artifact_path": "/metagraph/search.json",
+      "cache": "standard",
+      "description": "Fetch compact search index.",
+      "method": "GET",
+      "path": "/api/v1/search",
+      "public": true
+    }
+  ],
+  "schema_version": 1
+}

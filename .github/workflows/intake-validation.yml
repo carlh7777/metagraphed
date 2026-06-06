@@ -1,0 +1,67 @@
+name: Intake Validation
+
+on:
+  issues:
+    types:
+      - opened
+      - edited
+      - labeled
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: intake-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    if: contains(github.event.issue.labels.*.name, 'interface-submission')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Write issue payload
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            fs.writeFileSync('issue.json', JSON.stringify(context.payload.issue, null, 2));
+
+      - name: Validate intake issue
+        run: npm run intake:dry-run -- --issue-json issue.json --out intake-report.json
+
+      - name: Comment intake report
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const report = JSON.parse(fs.readFileSync('intake-report.json', 'utf8'));
+            const body = [
+              '## Metagraphed intake dry-run',
+              '',
+              `State: \`${report.state}\``,
+              `Next action: \`${report.next_action}\``,
+              `Publish allowed: \`${report.publish_allowed}\``,
+              '',
+              report.errors.length > 0
+                ? `Errors:\n${report.errors.map((error) => `- ${error}`).join('\n')}`
+                : 'Candidate parsed successfully. Maintainer review is still required before promotion.'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body
+            });

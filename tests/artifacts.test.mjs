@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
+import { handleRequest } from "../workers/api.mjs";
 
 function runNode(script) {
   execFileSync(process.execPath, [script], {
@@ -29,6 +30,13 @@ test("public artifacts are internally consistent", () => {
   const rpcEndpoints = JSON.parse(readFileSync("public/metagraph/rpc-endpoints.json", "utf8"));
   const coverage = JSON.parse(readFileSync("public/metagraph/coverage.json", "utf8"));
   const contracts = JSON.parse(readFileSync("public/metagraph/contracts.json", "utf8"));
+  const apiIndex = JSON.parse(readFileSync("public/metagraph/api-index.json", "utf8"));
+  const search = JSON.parse(readFileSync("public/metagraph/search.json", "utf8"));
+  const freshness = JSON.parse(readFileSync("public/metagraph/freshness.json", "utf8"));
+  const sourceHealth = JSON.parse(readFileSync("public/metagraph/source-health.json", "utf8"));
+  const evidenceLedger = JSON.parse(readFileSync("public/metagraph/evidence-ledger.json", "utf8"));
+  const endpointPools = JSON.parse(readFileSync("public/metagraph/rpc/pools.json", "utf8"));
+  const r2Manifest = JSON.parse(readFileSync("public/metagraph/r2-manifest.json", "utf8"));
   const schemaDrift = JSON.parse(readFileSync("public/metagraph/schema-drift.json", "utf8"));
   const schemaIndex = JSON.parse(readFileSync("public/metagraph/schemas/index.json", "utf8"));
   const reviewCuration = JSON.parse(readFileSync("public/metagraph/review/curation.json", "utf8"));
@@ -57,6 +65,13 @@ test("public artifacts are internally consistent", () => {
   assert.equal(contracts.primary_domain, "metagraph.sh");
   assert.equal(contracts.status_domain, null);
   assert.equal(new Set(contracts.artifacts.map((artifact) => artifact.id)).size, contracts.artifacts.length);
+  assert.equal(apiIndex.routes.some((route) => route.path === "/api/v1/subnets"), true);
+  assert.equal(search.document_count, search.documents.length);
+  assert.equal(freshness.summary.native_snapshot_captured_at, native.captured_at);
+  assert.equal(sourceHealth.summary.provider_count > 0, true);
+  assert.equal(evidenceLedger.summary.claim_count, evidenceLedger.claims.length);
+  assert.equal(endpointPools.pools.length >= 3, true);
+  assert.equal(r2Manifest.artifact_count, r2Manifest.artifacts.length);
   assert.equal(
     schemaDrift.openapi_surface_count ?? schemaDrift.summary?.surface_count,
     surfaces.surfaces.filter((surface) => surface.kind === "openapi").length
@@ -84,4 +99,32 @@ test("public artifacts are internally consistent", () => {
     assert.equal(existsSync(`public/metagraph/health/subnets/${subnet.netuid}.json`), true);
     assert.equal(existsSync(`public/metagraph/health/badges/${subnet.netuid}.json`), true);
   }
+});
+
+test("Worker API serves public artifact envelopes", async () => {
+  const env = {
+    ASSETS: {
+      async fetch(request) {
+        const url = new URL(request.url);
+        const path = `public${url.pathname}`;
+        if (!existsSync(path)) {
+          return new Response("not found", { status: 404 });
+        }
+        return new Response(readFileSync(path), {
+          status: 200,
+          headers: {
+            "content-type": "application/json"
+          }
+        });
+      }
+    }
+  };
+
+  const response = await handleRequest(new Request("https://metagraph.sh/api/v1/subnets/7"), env, {});
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("access-control-allow-origin"), "*");
+  assert.equal(response.headers.get("x-metagraph-contract-version"), "2026-06-06.1");
+  const body = await response.json();
+  assert.equal(body.ok, true);
+  assert.equal(body.data.subnet.netuid, 7);
 });

@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-70",
   "summary": {
-    "avg_latency_ms": 349,
+    "avg_latency_ms": 465,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:42.879Z",
-    "last_ok": "2026-06-06T08:24:42.879Z",
+    "last_checked": "2026-06-06T08:58:01.743Z",
+    "last_ok": "2026-06-06T08:58:01.743Z",
     "name": "NexisGen",
     "netuid": 70,
     "ok_count": 4,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:42.503Z",
-      "last_ok": "2026-06-06T08:24:42.503Z",
-      "latency_ms": 231,
+      "last_checked": "2026-06-06T08:58:01.447Z",
+      "last_ok": "2026-06-06T08:58:01.447Z",
+      "latency_ms": 364,
       "method_tested": "HEAD",
       "netuid": 70,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-70-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/70",
-      "verified_at": "2026-06-06T08:24:42.503Z"
+      "verified_at": "2026-06-06T08:58:01.447Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:42.879Z",
-      "last_ok": "2026-06-06T08:24:42.879Z",
-      "latency_ms": 565,
+      "last_checked": "2026-06-06T08:58:01.743Z",
+      "last_ok": "2026-06-06T08:58:01.743Z",
+      "latency_ms": 641,
       "method_tested": "HEAD",
       "netuid": 70,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-70-taomarketcap-source-repo",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/RendixNetwork/nexisgen",
-      "verified_at": "2026-06-06T08:24:42.879Z"
+      "verified_at": "2026-06-06T08:58:01.743Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:42.636Z",
-      "last_ok": "2026-06-06T08:24:42.636Z",
-      "latency_ms": 314,
+      "last_checked": "2026-06-06T08:58:01.655Z",
+      "last_ok": "2026-06-06T08:58:01.655Z",
+      "latency_ms": 540,
       "method_tested": "HEAD",
       "netuid": 70,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-70-taomarketcap-website",
       "uptime_sample_ratio": 1,
       "url": "https://nexisgen.ai/",
-      "verified_at": "2026-06-06T08:24:42.636Z"
+      "verified_at": "2026-06-06T08:58:01.655Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:42.623Z",
-      "last_ok": "2026-06-06T08:24:42.623Z",
-      "latency_ms": 284,
+      "last_checked": "2026-06-06T08:58:01.472Z",
+      "last_ok": "2026-06-06T08:58:01.472Z",
+      "latency_ms": 314,
       "method_tested": "HEAD",
       "netuid": 70,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-70-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/70",
-      "verified_at": "2026-06-06T08:24:42.623Z"
+      "verified_at": "2026-06-06T08:58:01.472Z"
     }
   ]
 }

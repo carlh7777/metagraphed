@@ -19,7 +19,8 @@ The backend currently covers all active Finney netuids:
 - Every active netuid has a curated overlay.
 - Allways SN7 and Gittensor SN74 are adapter-backed pilots.
 - Root netuid `0` is the home for Bittensor base-layer Subtensor RPC/WSS endpoints.
-- Health, badge, status, adapter, review, schema, and RPC artifacts all live under `metagraph.sh/metagraph/*`.
+- Health, badge, status, adapter, review, schema, RPC, search, freshness, evidence, and R2 manifest artifacts all live under `metagraph.sh/metagraph/*`.
+- Worker API routes under `metagraph.sh/api/v1/*` expose stable envelopes over those canonical artifacts.
 
 ## Product Layers
 
@@ -77,6 +78,8 @@ Gittensor SN74 provides a different operational shape: repositories, bounties, c
 Gittensor emissions should fund software stewardship, review, registry maintenance, and contributor coordination.
 
 Recurring infra costs should be separate milestones: hosted mirrors, cache layers, load-balanced public subnet access, Bittensor lite/archive nodes, and other OPEX-heavy work.
+
+Cloudflare is now part of the backend path while available: Workers serve API routes, R2 stores artifact history, and KV can store the latest artifact pointer. GitHub-reviewed artifacts remain canonical.
 
 ## Public-Safety Boundary
 

@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-3",
   "summary": {
-    "avg_latency_ms": 484,
+    "avg_latency_ms": 509,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:36.428Z",
-    "last_ok": "2026-06-06T08:24:36.428Z",
+    "last_checked": "2026-06-06T08:57:54.798Z",
+    "last_ok": "2026-06-06T08:57:54.798Z",
     "name": "deprecated",
     "netuid": 3,
     "ok_count": 9,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:35.624Z",
-      "last_ok": "2026-06-06T08:24:35.624Z",
-      "latency_ms": 100,
+      "last_checked": "2026-06-06T08:57:54.133Z",
+      "last_ok": "2026-06-06T08:57:54.133Z",
+      "latency_ms": 182,
       "method_tested": "HEAD",
       "netuid": 3,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-3-github-readme-tplr-ai-templar-dashboard-8",
       "uptime_sample_ratio": 1,
       "url": "https://img.shields.io/badge/W%26B-Public%20Dashboard-FFBE00?logo=weightsandbiases",
-      "verified_at": "2026-06-06T08:24:35.624Z"
+      "verified_at": "2026-06-06T08:57:54.133Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:36.218Z",
-      "last_ok": "2026-06-06T08:24:36.218Z",
-      "latency_ms": 636,
+      "last_checked": "2026-06-06T08:57:54.641Z",
+      "last_ok": "2026-06-06T08:57:54.641Z",
+      "latency_ms": 679,
       "method_tested": "HEAD",
       "netuid": 3,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-3-github-readme-tplr-ai-templar-docs-2",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/one-covenant/templar/blob/main/docs/miner.md",
-      "verified_at": "2026-06-06T08:24:36.218Z"
+      "verified_at": "2026-06-06T08:57:54.641Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:36.321Z",
-      "last_ok": "2026-06-06T08:24:36.321Z",
-      "latency_ms": 717,
+      "last_checked": "2026-06-06T08:57:54.730Z",
+      "last_ok": "2026-06-06T08:57:54.730Z",
+      "latency_ms": 738,
       "method_tested": "HEAD",
       "netuid": 3,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-3-github-readme-tplr-ai-templar-docs-3",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/one-covenant/templar/blob/main/docs/validator.md",
-      "verified_at": "2026-06-06T08:24:36.321Z"
+      "verified_at": "2026-06-06T08:57:54.730Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:36.222Z",
-      "last_ok": "2026-06-06T08:24:36.222Z",
-      "latency_ms": 597,
+      "last_checked": "2026-06-06T08:57:54.410Z",
+      "last_ok": "2026-06-06T08:57:54.410Z",
+      "latency_ms": 401,
       "method_tested": "HEAD",
       "netuid": 3,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-3-github-readme-tplr-ai-templar-website-1",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/one-covenant/crusades",
-      "verified_at": "2026-06-06T08:24:36.222Z"
+      "verified_at": "2026-06-06T08:57:54.410Z"
     },
     {
       "auth_required": false,
@@ -127,9 +127,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:36.306Z",
-      "last_ok": "2026-06-06T08:24:36.306Z",
-      "latency_ms": 638,
+      "last_checked": "2026-06-06T08:57:54.789Z",
+      "last_ok": "2026-06-06T08:57:54.789Z",
+      "latency_ms": 757,
       "method_tested": "HEAD",
       "netuid": 3,
       "private_redirect_blocked": false,
@@ -143,7 +143,7 @@
       "surface_id": "sn-3-github-readme-tplr-ai-templar-website-4",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/one-covenant/templar/actions/workflows/ci.yml",
-      "verified_at": "2026-06-06T08:24:36.306Z"
+      "verified_at": "2026-06-06T08:57:54.789Z"
     },
     {
       "auth_required": false,
@@ -152,9 +152,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:35.892Z",
-      "last_ok": "2026-06-06T08:24:35.892Z",
-      "latency_ms": 202,
+      "last_checked": "2026-06-06T08:57:54.260Z",
+      "last_ok": "2026-06-06T08:57:54.260Z",
+      "latency_ms": 159,
       "method_tested": "HEAD",
       "netuid": 3,
       "private_redirect_blocked": false,
@@ -168,7 +168,7 @@
       "surface_id": "sn-3-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/3",
-      "verified_at": "2026-06-06T08:24:35.892Z"
+      "verified_at": "2026-06-06T08:57:54.260Z"
     },
     {
       "auth_required": false,
@@ -177,9 +177,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:36.094Z",
-      "last_ok": "2026-06-06T08:24:36.094Z",
-      "latency_ms": 373,
+      "last_checked": "2026-06-06T08:57:54.468Z",
+      "last_ok": "2026-06-06T08:57:54.468Z",
+      "latency_ms": 362,
       "method_tested": "HEAD",
       "netuid": 3,
       "private_redirect_blocked": false,
@@ -193,7 +193,7 @@
       "surface_id": "sn-3-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/3",
-      "verified_at": "2026-06-06T08:24:36.094Z"
+      "verified_at": "2026-06-06T08:57:54.468Z"
     },
     {
       "auth_required": false,
@@ -202,9 +202,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:36.428Z",
-      "last_ok": "2026-06-06T08:24:36.428Z",
-      "latency_ms": 694,
+      "last_checked": "2026-06-06T08:57:54.741Z",
+      "last_ok": "2026-06-06T08:57:54.741Z",
+      "latency_ms": 627,
       "method_tested": "HEAD",
       "netuid": 3,
       "private_redirect_blocked": false,
@@ -218,7 +218,7 @@
       "surface_id": "sn-3-tensorplex-source-repo-1",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tplr-ai/templar",
-      "verified_at": "2026-06-06T08:24:36.428Z"
+      "verified_at": "2026-06-06T08:57:54.741Z"
     },
     {
       "auth_required": false,
@@ -227,9 +227,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:36.146Z",
-      "last_ok": "2026-06-06T08:24:36.146Z",
-      "latency_ms": 400,
+      "last_checked": "2026-06-06T08:57:54.798Z",
+      "last_ok": "2026-06-06T08:57:54.798Z",
+      "latency_ms": 675,
       "method_tested": "HEAD",
       "netuid": 3,
       "private_redirect_blocked": false,
@@ -243,7 +243,7 @@
       "surface_id": "sn-3-website-common-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/docs",
-      "verified_at": "2026-06-06T08:24:36.146Z"
+      "verified_at": "2026-06-06T08:57:54.798Z"
     }
   ]
 }

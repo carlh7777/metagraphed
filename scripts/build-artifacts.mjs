@@ -4,6 +4,7 @@ import {
   buildTimestamp,
   buildRpcEndpointArtifact,
   flattenSurfaces,
+  hashJson,
   listJsonFilesRecursive,
   loadCandidates,
   loadNativeSnapshot,
@@ -276,6 +277,29 @@ for (const [netuid, badge] of healthArtifacts.badges) {
 }
 await writeJson(path.join(outputRoot, "coverage.json"), coverage);
 await writeJson(path.join(outputRoot, "contracts.json"), contracts);
+await writeJson(path.join(outputRoot, "api-index.json"), buildApiIndex(contracts));
+await writeJson(path.join(outputRoot, "search.json"), buildSearchIndex(mergedSubnets, surfaces, providers));
+await writeJson(path.join(outputRoot, "freshness.json"), buildFreshnessArtifact({
+  adapterSnapshots,
+  generatedAt,
+  healthArtifacts,
+  nativeSnapshot,
+  schemaDrift: schemaDriftPlaceholder,
+  verification
+}));
+await writeJson(path.join(outputRoot, "source-health.json"), buildSourceHealthArtifact({
+  candidates,
+  providers,
+  rpcEndpoints,
+  verification
+}));
+await writeJson(path.join(outputRoot, "evidence-ledger.json"), buildEvidenceLedger({
+  candidates,
+  generatedAt,
+  subnets: mergedSubnets,
+  surfaces
+}));
+await writeJson(path.join(outputRoot, "rpc/pools.json"), buildEndpointPools(rpcEndpoints));
 await writeJson(path.join(outputRoot, "schema-drift.json"), schemaDriftPlaceholder);
 await writeJson(path.join(outputRoot, "schemas/index.json"), {
   schema_version: 1,
@@ -309,6 +333,12 @@ await writeJson(path.join(outputRoot, "review/maintainer-decisions.json"), {
 for (const [slug, artifact] of Object.entries(adapterArtifacts)) {
   await writeJson(path.join(outputRoot, `adapters/${slug}.json`), artifact);
 }
+
+const artifactSizesBeforeR2 = await collectArtifactSizes(outputRoot);
+await writeJson(path.join(outputRoot, "r2-manifest.json"), buildR2Manifest({
+  artifactSizes: artifactSizesBeforeR2,
+  generatedAt
+}));
 
 const artifactSizes = await collectArtifactSizes(outputRoot);
 await writeJson(path.join(outputRoot, "build-summary.json"), {
@@ -625,21 +655,28 @@ function buildContracts() {
     ],
     artifacts: [
       artifactContract("providers", "/metagraph/providers.json", "Provider/source registry."),
+      artifactContract("api-index", "/metagraph/api-index.json", "Clean API route index for metagraph.sh consumers."),
       artifactContract("subnets", "/metagraph/subnets.json", "All active Finney subnets with compact registry metadata."),
       artifactContract("subnet-detail", "/metagraph/subnets/{netuid}.json", "Per-subnet detail payload."),
       artifactContract("surfaces", "/metagraph/surfaces.json", "Curated public interface surfaces only."),
       artifactContract("candidates", "/metagraph/candidates.json", "Unpromoted candidate surfaces from public discovery."),
+      artifactContract("search", "/metagraph/search.json", "Compact search index for subnets, surfaces, and providers."),
       artifactContract("coverage", "/metagraph/coverage.json", "Registry coverage counts and source precedence."),
       artifactContract("curation", "/metagraph/curation.json", "Curation state and gaps for every active subnet."),
       artifactContract("gaps", "/metagraph/gaps.json", "Missing public interface facets by subnet."),
       artifactContract("verification", "/metagraph/verification/latest.json", "Latest candidate verification snapshot."),
+      artifactContract("freshness", "/metagraph/freshness.json", "Freshness and staleness summary for generated backend data."),
+      artifactContract("source-health", "/metagraph/source-health.json", "Upstream source and provider health summary."),
+      artifactContract("evidence-ledger", "/metagraph/evidence-ledger.json", "Public evidence ledger for subnet and surface claims."),
       artifactContract("health-latest", "/metagraph/health/latest.json", "Latest surface health snapshot."),
       artifactContract("health-summary", "/metagraph/health/summary.json", "Global and per-subnet health rollup."),
       artifactContract("health-subnet", "/metagraph/health/subnets/{netuid}.json", "Per-subnet health payload for metagraph.sh consumers."),
       artifactContract("health-badge", "/metagraph/health/badges/{netuid}.json", "Badge data contract for status rendering."),
       artifactContract("rpc-endpoints", "/metagraph/rpc-endpoints.json", "Bittensor base-layer RPC endpoint registry and probe status."),
+      artifactContract("rpc-pools", "/metagraph/rpc/pools.json", "Endpoint pool scoring for future read-only RPC routing."),
       artifactContract("schema-drift", "/metagraph/schema-drift.json", "OpenAPI schema snapshot/drift status."),
       artifactContract("schema-index", "/metagraph/schemas/index.json", "Index of captured machine-readable schemas."),
+      artifactContract("r2-manifest", "/metagraph/r2-manifest.json", "R2 upload manifest for generated artifact history."),
       artifactContract("review-curation", "/metagraph/review/curation.json", "Maintainer curation and adapter candidate report."),
       artifactContract("review-decisions", "/metagraph/review/maintainer-decisions.json", "Public-safe maintainer review decision ledger.")
     ]
@@ -656,6 +693,343 @@ function artifactContract(id, pathValue, description) {
   };
 }
 
+function buildApiIndex(contractsArtifact) {
+  const routes = [
+    apiRoute("GET", "/api/v1/subnets", "/metagraph/subnets.json", "List active Finney subnets."),
+    apiRoute("GET", "/api/v1/subnets/{netuid}", "/metagraph/subnets/{netuid}.json", "Fetch per-subnet detail."),
+    apiRoute("GET", "/api/v1/surfaces", "/metagraph/surfaces.json", "List curated public surfaces."),
+    apiRoute("GET", "/api/v1/providers", "/metagraph/providers.json", "List providers and sources."),
+    apiRoute("GET", "/api/v1/health", "/metagraph/health/summary.json", "Fetch global health summary."),
+    apiRoute("GET", "/api/v1/rpc/endpoints", "/metagraph/rpc-endpoints.json", "Fetch Bittensor RPC endpoint status."),
+    apiRoute("GET", "/api/v1/rpc/pools", "/metagraph/rpc/pools.json", "Fetch endpoint pool scores."),
+    apiRoute("GET", "/api/v1/schemas", "/metagraph/schemas/index.json", "Fetch captured schema index."),
+    apiRoute("GET", "/api/v1/adapters/{slug}", "/metagraph/adapters/{slug}.json", "Fetch adapter-backed public metrics."),
+    apiRoute("GET", "/api/v1/search", "/metagraph/search.json", "Fetch compact search index.")
+  ];
+
+  return {
+    schema_version: 1,
+    contract_version: contractVersion,
+    generated_at: generatedAt,
+    primary_domain: "metagraph.sh",
+    base_path: "/api/v1",
+    response_envelope: {
+      schema_version: 1,
+      fields: ["ok", "data", "meta", "error"],
+      notes: "Worker API routes wrap canonical /metagraph artifacts without changing artifact truth."
+    },
+    routes,
+    artifact_contracts: contractsArtifact.artifacts.map((artifact) => ({
+      id: artifact.id,
+      path: artifact.path,
+      contract_version: artifact.contract_version
+    }))
+  };
+}
+
+function apiRoute(method, pathValue, artifact_path, description) {
+  return {
+    artifact_path,
+    cache: pathValue.includes("/health") || pathValue.includes("/rpc/") ? "short" : "standard",
+    description,
+    method,
+    path: pathValue,
+    public: true
+  };
+}
+
+function buildSearchIndex(subnets, surfacesForIndex, providerList) {
+  const documents = [
+    ...subnets.map((subnet) => ({
+      id: `subnet:${subnet.netuid}`,
+      type: "subnet",
+      netuid: subnet.netuid,
+      slug: subnet.slug,
+      title: subnet.name,
+      subtitle: `SN${subnet.netuid} ${subnet.symbol || ""}`.trim(),
+      url: `/subnets/${subnet.netuid}`,
+      artifact_path: `/metagraph/subnets/${subnet.netuid}.json`,
+      tokens: compactTokens([subnet.name, subnet.slug, subnet.symbol, subnet.categories?.join(" ")])
+    })),
+    ...surfacesForIndex.map((surface) => ({
+      id: `surface:${surface.id}`,
+      type: "surface",
+      netuid: surface.netuid,
+      slug: surface.subnet_slug,
+      title: surface.name,
+      subtitle: `${surface.kind} / ${surface.provider}`,
+      url: surface.url,
+      artifact_path: "/metagraph/surfaces.json",
+      tokens: compactTokens([surface.name, surface.kind, surface.provider, surface.subnet_name, surface.subnet_slug])
+    })),
+    ...providerList.map((provider) => ({
+      id: `provider:${provider.id}`,
+      type: "provider",
+      title: provider.name,
+      subtitle: provider.kind,
+      url: provider.website_url,
+      artifact_path: "/metagraph/providers.json",
+      tokens: compactTokens([provider.name, provider.id, provider.kind, provider.authority])
+    }))
+  ].sort((a, b) => a.type.localeCompare(b.type) || String(a.title).localeCompare(String(b.title)) || a.id.localeCompare(b.id));
+
+  return {
+    schema_version: 1,
+    contract_version: contractVersion,
+    generated_at: generatedAt,
+    document_count: documents.length,
+    documents
+  };
+}
+
+function compactTokens(values) {
+  return [...new Set(values.filter(Boolean).join(" ").toLowerCase().split(/[^a-z0-9]+/).filter(Boolean))].sort();
+}
+
+function buildFreshnessArtifact({ adapterSnapshots: snapshots, generatedAt: timestamp, healthArtifacts: health, nativeSnapshot: native, schemaDrift, verification: verificationArtifact }) {
+  const adapterRows = [...snapshots.values()].map((snapshot) => ({
+    generated_at: snapshot.generated_at,
+    slug: snapshot.slug,
+    status: snapshot.status
+  }));
+  return {
+    schema_version: 1,
+    contract_version: contractVersion,
+    generated_at: timestamp,
+    summary: {
+      adapter_count: adapterRows.length,
+      health_surface_count: health.latest.surfaces.length,
+      native_snapshot_captured_at: native.captured_at,
+      openapi_surface_count: schemaDrift.openapi_surface_count || schemaDrift.summary?.surface_count || 0,
+      verification_generated_at: verificationArtifact.generated_at || null
+    },
+    sources: [
+      freshnessSource("native-subnets", native.captured_at, "registry/native/finney-subnets.json"),
+      freshnessSource("candidate-verification", verificationArtifact.generated_at || null, "registry/verification/latest.json"),
+      freshnessSource("surface-health", health.latest.generated_at, "public/metagraph/health/latest.json"),
+      freshnessSource("schema-drift", schemaDrift.generated_at, "public/metagraph/schema-drift.json"),
+      ...adapterRows.map((row) => freshnessSource(`adapter:${row.slug}`, row.generated_at, `registry/adapters/latest/${row.slug}.json`, row.status))
+    ].sort((a, b) => a.id.localeCompare(b.id))
+  };
+}
+
+function freshnessSource(id, timestamp, pathValue, status = "captured") {
+  return {
+    id,
+    path: pathValue,
+    status,
+    timestamp,
+    stale_after_hours: id === "native-subnets" ? 24 : 12
+  };
+}
+
+function buildSourceHealthArtifact({ candidates: candidateRows, providers: providerRows, rpcEndpoints: rpcArtifact, verification: verificationArtifact }) {
+  const verificationResults = verificationArtifact.results || [];
+  const candidatesByProvider = countBy(candidateRows, (candidate) => candidate.provider || "unknown");
+  const verificationByProvider = verificationResults.reduce((accumulator, result) => {
+    const candidate = candidateRows.find((row) => row.id === result.candidate_id);
+    const provider = candidate?.provider || "unknown";
+    const row = accumulator.get(provider) || { provider, classifications: {}, result_count: 0 };
+    row.result_count += 1;
+    row.classifications[result.classification || "unknown"] = (row.classifications[result.classification || "unknown"] || 0) + 1;
+    accumulator.set(provider, row);
+    return accumulator;
+  }, new Map());
+
+  const providers = providerRows.map((provider) => {
+    const verificationSummary = verificationByProvider.get(provider.id) || { classifications: {}, result_count: 0 };
+    const rpcCount = (rpcArtifact.endpoints || []).filter((endpoint) => endpoint.provider === provider.id).length;
+    return {
+      id: provider.id,
+      name: provider.name,
+      kind: provider.kind,
+      authority: provider.authority,
+      candidate_count: candidatesByProvider[provider.id] || 0,
+      verification_result_count: verificationSummary.result_count,
+      classifications: verificationSummary.classifications,
+      rpc_endpoint_count: rpcCount,
+      status: sourceStatus(verificationSummary.classifications, rpcCount)
+    };
+  }).sort((a, b) => a.id.localeCompare(b.id));
+
+  return {
+    schema_version: 1,
+    contract_version: contractVersion,
+    generated_at: generatedAt,
+    source: "generated-provider-and-verification-summary",
+    summary: {
+      provider_count: providers.length,
+      candidate_count: candidateRows.length,
+      verification_result_count: verificationResults.length,
+      rpc_endpoint_count: rpcArtifact.endpoints?.length || 0,
+      status_counts: countBy(providers, "status")
+    },
+    providers
+  };
+}
+
+function sourceStatus(classifications, rpcCount) {
+  const live = (classifications.live || 0) + (classifications.redirected || 0);
+  const degraded = (classifications["rate-limited"] || 0) + (classifications.transient || 0) + (classifications.timeout || 0);
+  const dead = (classifications.dead || 0) + (classifications.unsafe || 0);
+  if (live > 0 || rpcCount > 0) {
+    return degraded > live ? "degraded" : "ok";
+  }
+  if (degraded > 0) {
+    return "degraded";
+  }
+  if (dead > 0) {
+    return "failed";
+  }
+  return "unknown";
+}
+
+function buildEvidenceLedger({ candidates: candidateRows, generatedAt: timestamp, subnets, surfaces: surfaceRows }) {
+  const subnetClaims = subnets.map((subnet) => ({
+    claim: `SN${subnet.netuid} is an active ${subnet.subnet_type} netuid on Finney.`,
+    confidence: "high",
+    limits: "Native chain state is canonical for active existence only; off-chain interfaces come from overlays and candidates.",
+    source_tier: "native-chain",
+    source_type: "bittensor-sdk",
+    source_url: "registry/native/finney-subnets.json",
+    subject: `subnet:${subnet.netuid}`,
+    support_summary: `Captured from native snapshot at block ${subnet.block}.`,
+    verified_at: timestamp
+  }));
+
+  const surfaceClaims = surfaceRows.map((surface) => ({
+    claim: `${surface.name} is a public ${surface.kind} surface for SN${surface.netuid}.`,
+    confidence: surface.authority === "official" ? "high" : surface.authority === "registry-observed" ? "medium" : "medium",
+    limits: surface.auth_required ? "Surface is public metadata but requires authentication for access." : "Surface was recorded as public-safe; availability is tracked by health probes.",
+    source_tier: surface.authority === "official" ? "provider-claimed" : "community-docs",
+    source_type: surface.authority,
+    source_url: surface.source_urls?.[0] || surface.url,
+    subject: `surface:${surface.id}`,
+    support_summary: `Listed in curated overlay for ${surface.subnet_slug}.`,
+    verified_at: surface.verification?.verified_at || timestamp
+  }));
+
+  const candidateClaims = candidateRows.slice(0, 250).map((candidate) => ({
+    claim: `${candidate.name} is a candidate ${candidate.kind} surface for SN${candidate.netuid}.`,
+    confidence: candidate.confidence || "low",
+    limits: "Candidate records are discovery leads and are not promoted registry truth until verification and maintainer review.",
+    source_tier: candidate.source_tier || "community-docs",
+    source_type: candidate.source_type || "candidate-discovery",
+    source_url: candidate.source_url,
+    subject: `candidate:${candidate.id}`,
+    support_summary: candidate.review_notes || "Discovered from public source metadata.",
+    verified_at: candidate.verification?.verified_at || timestamp
+  }));
+
+  const claims = [...subnetClaims, ...surfaceClaims, ...candidateClaims].sort((a, b) => a.subject.localeCompare(b.subject));
+  return {
+    schema_version: 1,
+    contract_version: contractVersion,
+    generated_at: timestamp,
+    notes: "Evidence ledger uses public source URLs and generated registry provenance only. Candidate entries are capped to keep the public artifact compact.",
+    summary: {
+      candidate_claim_count: candidateClaims.length,
+      claim_count: claims.length,
+      subnet_claim_count: subnetClaims.length,
+      surface_claim_count: surfaceClaims.length
+    },
+    claims
+  };
+}
+
+function buildEndpointPools(rpcArtifact) {
+  const endpoints = (rpcArtifact.endpoints || []).map((endpoint) => {
+    const score = endpointScore(endpoint);
+    return {
+      ...endpoint,
+      score,
+      pool_eligible: endpoint.status === "ok" && endpoint.auth_required === false && endpoint.public_safe === true,
+      unsafe_methods_blocked: true
+    };
+  });
+
+  return {
+    schema_version: 1,
+    contract_version: contractVersion,
+    generated_at: generatedAt,
+    source: "rpc-endpoint-probes",
+    notes: [
+      "Endpoint pools are advisory only in v1.",
+      "Future proxy/load-balancer routes must block write and unsafe RPC methods by default."
+    ],
+    disabled_proxy_contract: {
+      enabled: false,
+      allowed_methods: ["chain_getHeader", "chain_getBlockHash", "system_health", "rpc_methods"],
+      denied_method_patterns: ["author_", "state_call", "system_", "sudo_", "payment_", "contracts_"]
+    },
+    pools: [
+      endpointPool("finney-rpc", "subtensor-rpc", endpoints),
+      endpointPool("finney-wss", "subtensor-wss", endpoints),
+      endpointPool("finney-archive", "archive", endpoints.filter((endpoint) => endpoint.archive_support === true))
+    ]
+  };
+}
+
+function endpointPool(id, kind, endpoints) {
+  const poolEndpoints = endpoints
+    .filter((endpoint) => kind === "archive" || endpoint.kind === kind)
+    .sort((a, b) => b.score - a.score || (a.latency_ms ?? 999999) - (b.latency_ms ?? 999999) || a.id.localeCompare(b.id));
+  return {
+    id,
+    kind,
+    endpoint_count: poolEndpoints.length,
+    eligible_count: poolEndpoints.filter((endpoint) => endpoint.pool_eligible).length,
+    best_endpoint_id: poolEndpoints.find((endpoint) => endpoint.pool_eligible)?.id || null,
+    endpoints: poolEndpoints.map((endpoint) => ({
+      archive_support: endpoint.archive_support,
+      id: endpoint.id,
+      latency_ms: endpoint.latency_ms,
+      latest_block: endpoint.latest_block,
+      pool_eligible: endpoint.pool_eligible,
+      provider: endpoint.provider,
+      score: endpoint.score,
+      status: endpoint.status,
+      url: endpoint.url
+    }))
+  };
+}
+
+function endpointScore(endpoint) {
+  let score = 0;
+  if (endpoint.status === "ok") score += 50;
+  if (endpoint.archive_support === true) score += 15;
+  if (endpoint.latest_block) score += 10;
+  if (Array.isArray(endpoint.methods_supported)) score += Math.min(endpoint.methods_supported.length, 20);
+  if (Number.isFinite(endpoint.latency_ms)) score += Math.max(0, 20 - Math.round(endpoint.latency_ms / 100));
+  if (endpoint.auth_required) score -= 25;
+  if (endpoint.status === "degraded") score -= 10;
+  if (endpoint.status === "failed") score -= 50;
+  return Math.max(0, score);
+}
+
+function buildR2Manifest({ artifactSizes, generatedAt: timestamp }) {
+  const version = timestamp.replace(/[:.]/g, "-");
+  const artifacts = artifactSizes.map((artifact) => ({
+    content_type: "application/json",
+    key: `runs/${version}/${artifact.path}`,
+    latest_key: `latest/${artifact.path}`,
+    path: `/metagraph/${artifact.path}`,
+    size_bytes: artifact.size_bytes
+  }));
+  return {
+    schema_version: 1,
+    contract_version: contractVersion,
+    generated_at: timestamp,
+    bucket_binding: "METAGRAPH_ARCHIVE",
+    bucket_name: "metagraphed-artifacts",
+    latest_prefix: "latest/",
+    run_prefix: `runs/${version}/`,
+    artifact_count: artifacts.length,
+    artifact_size_bytes: artifacts.reduce((sum, artifact) => sum + artifact.size_bytes, 0),
+    artifacts
+  };
+}
+
 async function collectArtifactSizes(root) {
   const files = [];
   await walk(root, async (filePath) => {
@@ -663,7 +1037,7 @@ async function collectArtifactSizes(root) {
       return;
     }
     const relativePath = path.relative(root, filePath).replace(/\\/g, "/");
-    if (relativePath === "build-summary.json") {
+    if (["build-summary.json", "r2-manifest.json"].includes(relativePath)) {
       return;
     }
     const stat = await fs.stat(filePath);

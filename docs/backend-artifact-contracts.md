@@ -16,12 +16,19 @@ Metagraphed v1 is backend-first. The public contract is static JSON under `https
 ## Core Artifacts
 
 - `/metagraph/contracts.json`: current public artifact contract version and artifact map.
+- `/metagraph/api-index.json`: Worker API route map and response-envelope contract.
 - `/metagraph/providers.json`: provider/source registry.
 - `/metagraph/subnets.json`: compact all-subnet index.
 - `/metagraph/subnets/{netuid}.json`: per-subnet detail with native data, curated surfaces, candidates, curation, and gaps.
 - `/metagraph/surfaces.json`: curated public surfaces only.
 - `/metagraph/rpc-endpoints.json`: Bittensor base-layer RPC/WSS endpoint registry and probe status.
+- `/metagraph/rpc/pools.json`: endpoint pool scoring for future read-only routing.
 - `/metagraph/candidates.json`: unpromoted candidate surfaces from public discovery.
+- `/metagraph/search.json`: compact search index for subnets, surfaces, and providers.
+- `/metagraph/freshness.json`: freshness and staleness metadata for generated backend data.
+- `/metagraph/source-health.json`: source/provider health summary.
+- `/metagraph/evidence-ledger.json`: public evidence ledger for material registry claims.
+- `/metagraph/r2-manifest.json`: Cloudflare R2 upload manifest for artifact history.
 - `/metagraph/coverage.json`: count parity and coverage levels.
 - `/metagraph/curation.json`: curation state for every active subnet.
 - `/metagraph/gaps.json`: missing public interface facets by subnet.
@@ -51,7 +58,17 @@ Metagraphed v1 is backend-first. The public contract is static JSON under `https
 - `npm run schemas:snapshot`: fetch machine-readable OpenAPI/Swagger JSON snapshots and update schema drift.
 - `npm run adapters:snapshot`: capture safe Allways/Gittensor public adapter summaries.
 - `METAGRAPH_WRITE_PROBE_RESULTS=1 npm run probes:smoke`: run live read-only probes and persist health/RPC history.
+- `npm run r2:manifest`: regenerate the Cloudflare R2 manifest from current public artifacts.
+- `npm run validate:schemas`: run strict JSON Schema validation over registry inputs and public artifacts.
+- `npm run validate:api`: validate Worker API routes over local artifacts.
+- `npm run validate:intake`: validate GitHub issue intake templates.
+- `npm run validate:workflows`: validate workflow hardening rules.
+- `npm run worker:deploy:dry-run`: validate Worker/Wrangler deployment shape without contacting Cloudflare.
 - `npm run sync:summary`: generate a registry-refresh PR summary from actual artifact diffs.
+
+## Cloudflare Runtime
+
+`workers/api.mjs` serves stable `/api/v1/*` JSON envelopes over the canonical artifact tree. It reads from Workers Static Assets first and can fall back to R2 through `METAGRAPH_ARCHIVE` when configured. The RPC proxy route is intentionally disabled unless `METAGRAPH_ENABLE_RPC_PROXY=true`, and even then the current contract keeps unsafe/write methods out of scope.
 
 ## Current Domain Scope
 

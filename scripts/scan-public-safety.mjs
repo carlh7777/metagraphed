@@ -8,7 +8,9 @@ const targetRoots = [
   "registry",
   "schemas",
   "public",
-  ".github"
+  ".github",
+  "workers",
+  "wrangler.jsonc"
 ];
 
 const patterns = [

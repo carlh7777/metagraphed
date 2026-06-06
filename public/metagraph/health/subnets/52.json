@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-52",
   "summary": {
-    "avg_latency_ms": 314,
+    "avg_latency_ms": 383,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:41.114Z",
-    "last_ok": "2026-06-06T08:24:41.114Z",
+    "last_checked": "2026-06-06T08:57:59.895Z",
+    "last_ok": "2026-06-06T08:57:59.895Z",
     "name": "Dojo",
     "netuid": 52,
     "ok_count": 10,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:40.664Z",
-      "last_ok": "2026-06-06T08:24:40.664Z",
-      "latency_ms": 210,
+      "last_checked": "2026-06-06T08:57:59.234Z",
+      "last_ok": "2026-06-06T08:57:59.234Z",
+      "latency_ms": 239,
       "method_tested": "HEAD",
       "netuid": 52,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-52-github-readme-tensorplex-labs-dojo-ui-docs-3",
       "uptime_sample_ratio": 1,
       "url": "https://nextjs.org/docs/basic-features/font-optimization",
-      "verified_at": "2026-06-06T08:24:40.664Z"
+      "verified_at": "2026-06-06T08:57:59.234Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:40.637Z",
-      "last_ok": "2026-06-06T08:24:40.637Z",
-      "latency_ms": 165,
+      "last_checked": "2026-06-06T08:57:59.235Z",
+      "last_ok": "2026-06-06T08:57:59.235Z",
+      "latency_ms": 154,
       "method_tested": "HEAD",
       "netuid": 52,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-52-github-readme-tensorplex-labs-dojo-ui-docs-4",
       "uptime_sample_ratio": 1,
       "url": "https://nextjs.org/docs",
-      "verified_at": "2026-06-06T08:24:40.637Z"
+      "verified_at": "2026-06-06T08:57:59.235Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:40.761Z",
-      "last_ok": "2026-06-06T08:24:40.761Z",
-      "latency_ms": 240,
+      "last_checked": "2026-06-06T08:57:59.316Z",
+      "last_ok": "2026-06-06T08:57:59.316Z",
+      "latency_ms": 233,
       "method_tested": "HEAD",
       "netuid": 52,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-52-github-readme-tensorplex-labs-dojo-ui-docs-6",
       "uptime_sample_ratio": 1,
       "url": "https://nextjs.org/docs/deployment",
-      "verified_at": "2026-06-06T08:24:40.761Z"
+      "verified_at": "2026-06-06T08:57:59.316Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:40.914Z",
-      "last_ok": "2026-06-06T08:24:40.914Z",
-      "latency_ms": 388,
+      "last_checked": "2026-06-06T08:57:59.560Z",
+      "last_ok": "2026-06-06T08:57:59.560Z",
+      "latency_ms": 448,
       "method_tested": "HEAD",
       "netuid": 52,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-52-github-readme-tensorplex-labs-dojo-ui-website-1",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/vercel/next.js/tree/canary/packages/create-next-app",
-      "verified_at": "2026-06-06T08:24:40.914Z"
+      "verified_at": "2026-06-06T08:57:59.560Z"
     },
     {
       "auth_required": false,
@@ -127,9 +127,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:40.910Z",
-      "last_ok": "2026-06-06T08:24:40.910Z",
-      "latency_ms": 376,
+      "last_checked": "2026-06-06T08:57:59.646Z",
+      "last_ok": "2026-06-06T08:57:59.646Z",
+      "latency_ms": 533,
       "method_tested": "HEAD",
       "netuid": 52,
       "private_redirect_blocked": false,
@@ -143,7 +143,7 @@
       "surface_id": "sn-52-github-readme-tensorplex-labs-dojo-ui-website-5",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/vercel/next.js",
-      "verified_at": "2026-06-06T08:24:40.910Z"
+      "verified_at": "2026-06-06T08:57:59.646Z"
     },
     {
       "auth_required": false,
@@ -152,9 +152,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:40.694Z",
-      "last_ok": "2026-06-06T08:24:40.694Z",
-      "latency_ms": 140,
+      "last_checked": "2026-06-06T08:57:59.307Z",
+      "last_ok": "2026-06-06T08:57:59.307Z",
+      "latency_ms": 163,
       "method_tested": "HEAD",
       "netuid": 52,
       "private_redirect_blocked": false,
@@ -168,7 +168,7 @@
       "surface_id": "sn-52-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/52",
-      "verified_at": "2026-06-06T08:24:40.694Z"
+      "verified_at": "2026-06-06T08:57:59.307Z"
     },
     {
       "auth_required": false,
@@ -177,9 +177,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:41.015Z",
-      "last_ok": "2026-06-06T08:24:41.015Z",
-      "latency_ms": 419,
+      "last_checked": "2026-06-06T08:57:59.576Z",
+      "last_ok": "2026-06-06T08:57:59.576Z",
+      "latency_ms": 404,
       "method_tested": "HEAD",
       "netuid": 52,
       "private_redirect_blocked": false,
@@ -193,7 +193,7 @@
       "surface_id": "sn-52-taomarketcap-source-repo",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/dojo",
-      "verified_at": "2026-06-06T08:24:41.015Z"
+      "verified_at": "2026-06-06T08:57:59.576Z"
     },
     {
       "auth_required": false,
@@ -202,9 +202,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:40.942Z",
-      "last_ok": "2026-06-06T08:24:40.942Z",
-      "latency_ms": 337,
+      "last_checked": "2026-06-06T08:57:59.548Z",
+      "last_ok": "2026-06-06T08:57:59.548Z",
+      "latency_ms": 352,
       "method_tested": "HEAD",
       "netuid": 52,
       "private_redirect_blocked": false,
@@ -218,7 +218,7 @@
       "surface_id": "sn-52-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/52",
-      "verified_at": "2026-06-06T08:24:40.942Z"
+      "verified_at": "2026-06-06T08:57:59.548Z"
     },
     {
       "auth_required": false,
@@ -227,9 +227,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:41.114Z",
-      "last_ok": "2026-06-06T08:24:41.114Z",
-      "latency_ms": 496,
+      "last_checked": "2026-06-06T08:57:59.846Z",
+      "last_ok": "2026-06-06T08:57:59.846Z",
+      "latency_ms": 639,
       "method_tested": "HEAD",
       "netuid": 52,
       "private_redirect_blocked": false,
@@ -243,7 +243,7 @@
       "surface_id": "sn-52-tensorplex-source-repo-3",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/dojo-ui",
-      "verified_at": "2026-06-06T08:24:41.114Z"
+      "verified_at": "2026-06-06T08:57:59.846Z"
     },
     {
       "auth_required": false,
@@ -252,9 +252,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:40.990Z",
-      "last_ok": "2026-06-06T08:24:40.990Z",
-      "latency_ms": 368,
+      "last_checked": "2026-06-06T08:57:59.895Z",
+      "last_ok": "2026-06-06T08:57:59.895Z",
+      "latency_ms": 661,
       "method_tested": "HEAD",
       "netuid": 52,
       "private_redirect_blocked": false,
@@ -268,7 +268,7 @@
       "surface_id": "sn-52-tensorplex-source-repo-4",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/dojo-worker-api",
-      "verified_at": "2026-06-06T08:24:40.990Z"
+      "verified_at": "2026-06-06T08:57:59.895Z"
     }
   ]
 }

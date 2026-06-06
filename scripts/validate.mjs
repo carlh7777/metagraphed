@@ -306,6 +306,7 @@ function validateReviewDecision(decision, nativeNetuids) {
 }
 
 async function validateGeneratedArtifacts(nativeSnapshot, overlays, candidates) {
+  const providersArtifact = await readJson(path.join(repoRoot, "public/metagraph/providers.json"));
   const subnetsArtifact = await readJson(path.join(repoRoot, "public/metagraph/subnets.json"));
   const surfacesArtifact = await readJson(path.join(repoRoot, "public/metagraph/surfaces.json"));
   const candidatesArtifact = await readJson(path.join(repoRoot, "public/metagraph/candidates.json"));
@@ -315,9 +316,16 @@ async function validateGeneratedArtifacts(nativeSnapshot, overlays, candidates) 
   const verificationArtifact = await readJson(path.join(repoRoot, "public/metagraph/verification/latest.json"));
   const coverageArtifact = await readJson(path.join(repoRoot, "public/metagraph/coverage.json"));
   const contractsArtifact = await readJson(path.join(repoRoot, "public/metagraph/contracts.json"));
+  const apiIndexArtifact = await readJson(path.join(repoRoot, "public/metagraph/api-index.json"));
+  const searchArtifact = await readJson(path.join(repoRoot, "public/metagraph/search.json"));
+  const freshnessArtifact = await readJson(path.join(repoRoot, "public/metagraph/freshness.json"));
+  const sourceHealthArtifact = await readJson(path.join(repoRoot, "public/metagraph/source-health.json"));
+  const evidenceLedgerArtifact = await readJson(path.join(repoRoot, "public/metagraph/evidence-ledger.json"));
   const healthArtifact = await readJson(path.join(repoRoot, "public/metagraph/health/latest.json"));
   const healthSummaryArtifact = await readJson(path.join(repoRoot, "public/metagraph/health/summary.json"));
   const rpcEndpointsArtifact = await readJson(path.join(repoRoot, "public/metagraph/rpc-endpoints.json"));
+  const endpointPoolsArtifact = await readJson(path.join(repoRoot, "public/metagraph/rpc/pools.json"));
+  const r2ManifestArtifact = await readJson(path.join(repoRoot, "public/metagraph/r2-manifest.json"));
   const schemaDriftArtifact = await readJson(path.join(repoRoot, "public/metagraph/schema-drift.json"));
   const schemaIndexArtifact = await readJson(path.join(repoRoot, "public/metagraph/schemas/index.json"));
   const reviewCurationArtifact = await readJson(path.join(repoRoot, "public/metagraph/review/curation.json"));
@@ -377,6 +385,19 @@ async function validateGeneratedArtifacts(nativeSnapshot, overlays, candidates) 
     new Set(contractsArtifact.artifacts.map((artifact) => artifact.id)).size === contractsArtifact.artifacts.length,
     "contracts artifact: artifact ids must be unique"
   );
+  assert(apiIndexArtifact.primary_domain === "metagraph.sh", "api index: primary_domain must be metagraph.sh");
+  assert(Array.isArray(apiIndexArtifact.routes), "api index: routes must be an array");
+  assert(
+    apiIndexArtifact.routes.every((route) => String(route.path || "").startsWith("/api/v1/")),
+    "api index: routes must stay under /api/v1"
+  );
+  assert(searchArtifact.document_count === searchArtifact.documents.length, "search: document_count mismatch");
+  assert(
+    freshnessArtifact.summary?.native_snapshot_captured_at === nativeSnapshot.captured_at,
+    "freshness: native snapshot timestamp mismatch"
+  );
+  assert(sourceHealthArtifact.summary?.provider_count === providersArtifact.providers.length, "source health: provider count mismatch");
+  assert(evidenceLedgerArtifact.summary?.claim_count === evidenceLedgerArtifact.claims.length, "evidence ledger: claim count mismatch");
   assert(
     healthArtifact.surfaces.length === surfacesArtifact.surfaces.filter((surface) => surface.probe?.enabled && surface.public_safe).length,
     "health artifact: probed surface count mismatch"
@@ -391,6 +412,16 @@ async function validateGeneratedArtifacts(nativeSnapshot, overlays, candidates) 
     rpcEndpointsArtifact.endpoints.every((endpoint) => endpoint.netuid === 0),
     "rpc endpoints artifact: base-layer RPC endpoints must be rooted at netuid 0"
   );
+  assert(Array.isArray(endpointPoolsArtifact.pools), "endpoint pools: pools must be an array");
+  assert(
+    endpointPoolsArtifact.disabled_proxy_contract?.enabled === false,
+    "endpoint pools: read-only proxy contract must remain disabled by default"
+  );
+  assert(
+    r2ManifestArtifact.artifact_count === r2ManifestArtifact.artifacts.length,
+    "R2 manifest: artifact count mismatch"
+  );
+  assert(r2ManifestArtifact.bucket_binding === "METAGRAPH_ARCHIVE", "R2 manifest: unexpected bucket binding");
   assert(
     (schemaDriftArtifact.openapi_surface_count ?? schemaDriftArtifact.summary?.surface_count) ===
       surfacesArtifact.surfaces.filter((surface) => surface.kind === "openapi").length,

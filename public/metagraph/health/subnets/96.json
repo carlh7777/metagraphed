@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-96",
   "summary": {
-    "avg_latency_ms": 409,
+    "avg_latency_ms": 508,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:46.026Z",
-    "last_ok": "2026-06-06T08:24:46.026Z",
+    "last_checked": "2026-06-06T08:58:04.994Z",
+    "last_ok": "2026-06-06T08:58:04.994Z",
     "name": "Verathos",
     "netuid": 96,
     "ok_count": 6,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:45.332Z",
-      "last_ok": "2026-06-06T08:24:45.332Z",
-      "latency_ms": 561,
+      "last_checked": "2026-06-06T08:58:04.441Z",
+      "last_ok": "2026-06-06T08:58:04.441Z",
+      "latency_ms": 623,
       "method_tested": "HEAD",
       "netuid": 96,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-96-github-readme-flock-io-flock-subnet-website-1",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/FLock-io/FLock-subnet.git",
-      "verified_at": "2026-06-06T08:24:45.332Z"
+      "verified_at": "2026-06-06T08:58:04.441Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:44.961Z",
-      "last_ok": "2026-06-06T08:24:44.961Z",
-      "latency_ms": 138,
+      "last_checked": "2026-06-06T08:58:04.183Z",
+      "last_ok": "2026-06-06T08:58:04.183Z",
+      "latency_ms": 357,
       "method_tested": "HEAD",
       "netuid": 96,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-96-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/96",
-      "verified_at": "2026-06-06T08:24:44.961Z"
+      "verified_at": "2026-06-06T08:58:04.183Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:45.251Z",
-      "last_ok": "2026-06-06T08:24:45.251Z",
-      "latency_ms": 408,
+      "last_checked": "2026-06-06T08:58:04.459Z",
+      "last_ok": "2026-06-06T08:58:04.459Z",
+      "latency_ms": 618,
       "method_tested": "HEAD",
       "netuid": 96,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-96-taomarketcap-source-repo",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/verathos-ai/verathos",
-      "verified_at": "2026-06-06T08:24:45.251Z"
+      "verified_at": "2026-06-06T08:58:04.459Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:46.026Z",
-      "last_ok": "2026-06-06T08:24:46.026Z",
-      "latency_ms": 586,
+      "last_checked": "2026-06-06T08:58:04.994Z",
+      "last_ok": "2026-06-06T08:58:04.994Z",
+      "latency_ms": 575,
       "method_tested": "GET",
       "netuid": 96,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-96-taomarketcap-website",
       "uptime_sample_ratio": 1,
       "url": "https://verathos.ai/",
-      "verified_at": "2026-06-06T08:24:46.026Z"
+      "verified_at": "2026-06-06T08:58:04.994Z"
     },
     {
       "auth_required": false,
@@ -127,9 +127,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:45.191Z",
-      "last_ok": "2026-06-06T08:24:45.191Z",
-      "latency_ms": 313,
+      "last_checked": "2026-06-06T08:58:04.211Z",
+      "last_ok": "2026-06-06T08:58:04.211Z",
+      "latency_ms": 324,
       "method_tested": "HEAD",
       "netuid": 96,
       "private_redirect_blocked": false,
@@ -143,7 +143,7 @@
       "surface_id": "sn-96-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/96",
-      "verified_at": "2026-06-06T08:24:45.191Z"
+      "verified_at": "2026-06-06T08:58:04.211Z"
     },
     {
       "auth_required": false,
@@ -152,9 +152,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:45.331Z",
-      "last_ok": "2026-06-06T08:24:45.331Z",
-      "latency_ms": 448,
+      "last_checked": "2026-06-06T08:58:04.439Z",
+      "last_ok": "2026-06-06T08:58:04.439Z",
+      "latency_ms": 552,
       "method_tested": "HEAD",
       "netuid": 96,
       "private_redirect_blocked": false,
@@ -168,7 +168,7 @@
       "surface_id": "sn-96-tensorplex-source-repo-1",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/FLock-io/FLock-subnet",
-      "verified_at": "2026-06-06T08:24:45.331Z"
+      "verified_at": "2026-06-06T08:58:04.439Z"
     }
   ]
 }

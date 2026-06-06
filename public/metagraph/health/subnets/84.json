@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-84",
   "summary": {
-    "avg_latency_ms": 369,
+    "avg_latency_ms": 290,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:44.480Z",
-    "last_ok": "2026-06-06T08:24:44.480Z",
+    "last_checked": "2026-06-06T08:58:03.275Z",
+    "last_ok": "2026-06-06T08:58:03.275Z",
     "name": "ansuz",
     "netuid": 84,
     "ok_count": 8,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:44.480Z",
-      "last_ok": "2026-06-06T08:24:44.480Z",
-      "latency_ms": 682,
+      "last_checked": "2026-06-06T08:58:03.159Z",
+      "last_ok": "2026-06-06T08:58:03.159Z",
+      "latency_ms": 421,
       "method_tested": "HEAD",
       "netuid": 84,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-84-github-readme-tatsuproject-chipforge-eda-server-website-1",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/TatsuProject/chipforge_eda_server",
-      "verified_at": "2026-06-06T08:24:44.480Z"
+      "verified_at": "2026-06-06T08:58:03.159Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:43.861Z",
-      "last_ok": "2026-06-06T08:24:43.861Z",
-      "latency_ms": 50,
+      "last_checked": "2026-06-06T08:58:02.801Z",
+      "last_ok": "2026-06-06T08:58:02.801Z",
+      "latency_ms": 45,
       "method_tested": "HEAD",
       "netuid": 84,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-84-github-readme-tatsuproject-chipforge-sn84-docs-1",
       "uptime_sample_ratio": 1,
       "url": "https://docs.learnbittensor.org/btcli",
-      "verified_at": "2026-06-06T08:24:43.861Z"
+      "verified_at": "2026-06-06T08:58:02.801Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:44.403Z",
-      "last_ok": "2026-06-06T08:24:44.403Z",
-      "latency_ms": 542,
+      "last_checked": "2026-06-06T08:58:03.275Z",
+      "last_ok": "2026-06-06T08:58:03.275Z",
+      "latency_ms": 515,
       "method_tested": "HEAD",
       "netuid": 84,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-84-github-readme-tatsuproject-chipforge-sn84-website-2",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/TatsuProject/ChipForge_SN84",
-      "verified_at": "2026-06-06T08:24:44.403Z"
+      "verified_at": "2026-06-06T08:58:03.275Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:44.020Z",
-      "last_ok": "2026-06-06T08:24:44.020Z",
-      "latency_ms": 154,
+      "last_checked": "2026-06-06T08:58:02.935Z",
+      "last_ok": "2026-06-06T08:58:02.935Z",
+      "latency_ms": 144,
       "method_tested": "HEAD",
       "netuid": 84,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-84-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/84",
-      "verified_at": "2026-06-06T08:24:44.020Z"
+      "verified_at": "2026-06-06T08:58:02.935Z"
     },
     {
       "auth_required": false,
@@ -127,9 +127,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:44.183Z",
-      "last_ok": "2026-06-06T08:24:44.183Z",
-      "latency_ms": 305,
+      "last_checked": "2026-06-06T08:58:03.155Z",
+      "last_ok": "2026-06-06T08:58:03.155Z",
+      "latency_ms": 353,
       "method_tested": "HEAD",
       "netuid": 84,
       "private_redirect_blocked": false,
@@ -143,7 +143,7 @@
       "surface_id": "sn-84-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/84",
-      "verified_at": "2026-06-06T08:24:44.183Z"
+      "verified_at": "2026-06-06T08:58:03.155Z"
     },
     {
       "auth_required": false,
@@ -152,9 +152,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:44.404Z",
-      "last_ok": "2026-06-06T08:24:44.404Z",
-      "latency_ms": 513,
+      "last_checked": "2026-06-06T08:58:03.275Z",
+      "last_ok": "2026-06-06T08:58:03.275Z",
+      "latency_ms": 468,
       "method_tested": "HEAD",
       "netuid": 84,
       "private_redirect_blocked": false,
@@ -168,7 +168,7 @@
       "surface_id": "sn-84-tensorplex-source-repo-1",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/TatsuProject/ChipForge_SN84",
-      "verified_at": "2026-06-06T08:24:44.404Z"
+      "verified_at": "2026-06-06T08:58:03.275Z"
     },
     {
       "auth_required": false,
@@ -177,9 +177,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:44.479Z",
-      "last_ok": "2026-06-06T08:24:44.479Z",
-      "latency_ms": 588,
+      "last_checked": "2026-06-06T08:58:03.159Z",
+      "last_ok": "2026-06-06T08:58:03.159Z",
+      "latency_ms": 296,
       "method_tested": "HEAD",
       "netuid": 84,
       "private_redirect_blocked": false,
@@ -193,7 +193,7 @@
       "surface_id": "sn-84-tensorplex-source-repo-2",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/TatsuProject/chipforge_eda_server",
-      "verified_at": "2026-06-06T08:24:44.479Z"
+      "verified_at": "2026-06-06T08:58:03.159Z"
     },
     {
       "auth_required": false,
@@ -202,9 +202,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:44.048Z",
-      "last_ok": "2026-06-06T08:24:44.048Z",
-      "latency_ms": 117,
+      "last_checked": "2026-06-06T08:58:02.971Z",
+      "last_ok": "2026-06-06T08:58:02.971Z",
+      "latency_ms": 76,
       "method_tested": "HEAD",
       "netuid": 84,
       "private_redirect_blocked": false,
@@ -218,7 +218,7 @@
       "surface_id": "sn-84-website-common-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/docs",
-      "verified_at": "2026-06-06T08:24:44.048Z"
+      "verified_at": "2026-06-06T08:58:02.971Z"
     }
   ]
 }

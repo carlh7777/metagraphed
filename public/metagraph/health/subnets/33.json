@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-33",
   "summary": {
-    "avg_latency_ms": 387,
+    "avg_latency_ms": 370,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:39.317Z",
-    "last_ok": "2026-06-06T08:24:39.317Z",
+    "last_checked": "2026-06-06T08:57:58.007Z",
+    "last_ok": "2026-06-06T08:57:58.007Z",
     "name": "ReadyAI",
     "netuid": 33,
     "ok_count": 3,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:38.947Z",
-      "last_ok": "2026-06-06T08:24:38.947Z",
-      "latency_ms": 217,
+      "last_checked": "2026-06-06T08:57:57.471Z",
+      "last_ok": "2026-06-06T08:57:57.471Z",
+      "latency_ms": 142,
       "method_tested": "HEAD",
       "netuid": 33,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-33-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/33",
-      "verified_at": "2026-06-06T08:24:38.947Z"
+      "verified_at": "2026-06-06T08:57:57.471Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:39.317Z",
-      "last_ok": "2026-06-06T08:24:39.317Z",
-      "latency_ms": 528,
+      "last_checked": "2026-06-06T08:57:58.007Z",
+      "last_ok": "2026-06-06T08:57:58.007Z",
+      "latency_ms": 640,
       "method_tested": "HEAD",
       "netuid": 33,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-33-taomarketcap-source-repo",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/afterpartyai/bittensor-conversation-genome-project",
-      "verified_at": "2026-06-06T08:24:39.317Z"
+      "verified_at": "2026-06-06T08:57:58.007Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:39.213Z",
-      "last_ok": "2026-06-06T08:24:39.213Z",
-      "latency_ms": 415,
+      "last_checked": "2026-06-06T08:57:57.715Z",
+      "last_ok": "2026-06-06T08:57:57.715Z",
+      "latency_ms": 328,
       "method_tested": "HEAD",
       "netuid": 33,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-33-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/33",
-      "verified_at": "2026-06-06T08:24:39.213Z"
+      "verified_at": "2026-06-06T08:57:57.715Z"
     }
   ]
 }

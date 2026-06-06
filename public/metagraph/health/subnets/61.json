@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-61",
   "summary": {
-    "avg_latency_ms": 294,
+    "avg_latency_ms": 376,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:41.874Z",
-    "last_ok": "2026-06-06T08:24:41.874Z",
+    "last_checked": "2026-06-06T08:58:00.620Z",
+    "last_ok": "2026-06-06T08:58:00.620Z",
     "name": "RedTeam",
     "netuid": 61,
     "ok_count": 4,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:41.590Z",
-      "last_ok": "2026-06-06T08:24:41.590Z",
-      "latency_ms": 167,
+      "last_checked": "2026-06-06T08:58:00.427Z",
+      "last_ok": "2026-06-06T08:58:00.427Z",
+      "latency_ms": 307,
       "method_tested": "HEAD",
       "netuid": 61,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-61-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/61",
-      "verified_at": "2026-06-06T08:24:41.590Z"
+      "verified_at": "2026-06-06T08:58:00.427Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:41.874Z",
-      "last_ok": "2026-06-06T08:24:41.874Z",
-      "latency_ms": 411,
+      "last_checked": "2026-06-06T08:58:00.551Z",
+      "last_ok": "2026-06-06T08:58:00.551Z",
+      "latency_ms": 414,
       "method_tested": "HEAD",
       "netuid": 61,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-61-taomarketcap-source-repo",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/RedTeamSubnet/RedTeam",
-      "verified_at": "2026-06-06T08:24:41.874Z"
+      "verified_at": "2026-06-06T08:58:00.551Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:41.762Z",
-      "last_ok": "2026-06-06T08:24:41.762Z",
-      "latency_ms": 298,
+      "last_checked": "2026-06-06T08:58:00.492Z",
+      "last_ok": "2026-06-06T08:58:00.492Z",
+      "latency_ms": 343,
       "method_tested": "HEAD",
       "netuid": 61,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-61-taomarketcap-website",
       "uptime_sample_ratio": 1,
       "url": "https://www.theredteam.io/",
-      "verified_at": "2026-06-06T08:24:41.762Z"
+      "verified_at": "2026-06-06T08:58:00.492Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:41.841Z",
-      "last_ok": "2026-06-06T08:24:41.841Z",
-      "latency_ms": 300,
+      "last_checked": "2026-06-06T08:58:00.620Z",
+      "last_ok": "2026-06-06T08:58:00.620Z",
+      "latency_ms": 441,
       "method_tested": "HEAD",
       "netuid": 61,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-61-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/61",
-      "verified_at": "2026-06-06T08:24:41.841Z"
+      "verified_at": "2026-06-06T08:58:00.620Z"
     }
   ]
 }

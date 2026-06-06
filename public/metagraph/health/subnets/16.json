@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-16",
   "summary": {
-    "avg_latency_ms": 440,
+    "avg_latency_ms": 480,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:37.932Z",
-    "last_ok": "2026-06-06T08:24:37.932Z",
+    "last_checked": "2026-06-06T08:57:56.569Z",
+    "last_ok": "2026-06-06T08:57:56.569Z",
     "name": "BitAds",
     "netuid": 16,
     "ok_count": 4,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:37.476Z",
-      "last_ok": "2026-06-06T08:24:37.476Z",
-      "latency_ms": 236,
+      "last_checked": "2026-06-06T08:57:55.904Z",
+      "last_ok": "2026-06-06T08:57:55.904Z",
+      "latency_ms": 182,
       "method_tested": "HEAD",
       "netuid": 16,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-16-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/16",
-      "verified_at": "2026-06-06T08:24:37.476Z"
+      "verified_at": "2026-06-06T08:57:55.904Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:37.753Z",
-      "last_ok": "2026-06-06T08:24:37.753Z",
-      "latency_ms": 481,
+      "last_checked": "2026-06-06T08:57:56.382Z",
+      "last_ok": "2026-06-06T08:57:56.382Z",
+      "latency_ms": 591,
       "method_tested": "HEAD",
       "netuid": 16,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-16-taomarketcap-source-repo",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/FirstTensorLabs/BitAds",
-      "verified_at": "2026-06-06T08:24:37.753Z"
+      "verified_at": "2026-06-06T08:57:56.382Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:37.932Z",
-      "last_ok": "2026-06-06T08:24:37.932Z",
-      "latency_ms": 647,
+      "last_checked": "2026-06-06T08:57:56.569Z",
+      "last_ok": "2026-06-06T08:57:56.569Z",
+      "latency_ms": 745,
       "method_tested": "HEAD",
       "netuid": 16,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-16-taomarketcap-website",
       "uptime_sample_ratio": 1,
       "url": "https://bitads.ai/",
-      "verified_at": "2026-06-06T08:24:37.932Z"
+      "verified_at": "2026-06-06T08:57:56.569Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:37.697Z",
-      "last_ok": "2026-06-06T08:24:37.697Z",
-      "latency_ms": 397,
+      "last_checked": "2026-06-06T08:57:56.227Z",
+      "last_ok": "2026-06-06T08:57:56.227Z",
+      "latency_ms": 402,
       "method_tested": "HEAD",
       "netuid": 16,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-16-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/16",
-      "verified_at": "2026-06-06T08:24:37.697Z"
+      "verified_at": "2026-06-06T08:57:56.227Z"
     }
   ]
 }

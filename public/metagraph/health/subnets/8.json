@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-8",
   "summary": {
-    "avg_latency_ms": 344,
+    "avg_latency_ms": 339,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:37.102Z",
-    "last_ok": "2026-06-06T08:24:37.102Z",
+    "last_checked": "2026-06-06T08:57:55.472Z",
+    "last_ok": "2026-06-06T08:57:55.472Z",
     "name": "Vanta",
     "netuid": 8,
     "ok_count": 5,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:36.764Z",
-      "last_ok": "2026-06-06T08:24:36.764Z",
-      "latency_ms": 268,
+      "last_checked": "2026-06-06T08:57:55.098Z",
+      "last_ok": "2026-06-06T08:57:55.098Z",
+      "latency_ms": 165,
       "method_tested": "HEAD",
       "netuid": 8,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-8-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/8",
-      "verified_at": "2026-06-06T08:24:36.764Z"
+      "verified_at": "2026-06-06T08:57:55.098Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:37.102Z",
-      "last_ok": "2026-06-06T08:24:37.102Z",
-      "latency_ms": 600,
+      "last_checked": "2026-06-06T08:57:55.472Z",
+      "last_ok": "2026-06-06T08:57:55.472Z",
+      "latency_ms": 517,
       "method_tested": "HEAD",
       "netuid": 8,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-8-taomarketcap-source-repo",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/taoshidev/vanta-network",
-      "verified_at": "2026-06-06T08:24:37.102Z"
+      "verified_at": "2026-06-06T08:57:55.472Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:36.654Z",
-      "last_ok": "2026-06-06T08:24:36.654Z",
-      "latency_ms": 136,
+      "last_checked": "2026-06-06T08:57:55.221Z",
+      "last_ok": "2026-06-06T08:57:55.221Z",
+      "latency_ms": 267,
       "method_tested": "HEAD",
       "netuid": 8,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-8-taomarketcap-website",
       "uptime_sample_ratio": 1,
       "url": "https://www.vantanetwork.io/",
-      "verified_at": "2026-06-06T08:24:36.654Z"
+      "verified_at": "2026-06-06T08:57:55.221Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:36.856Z",
-      "last_ok": "2026-06-06T08:24:36.856Z",
-      "latency_ms": 327,
+      "last_checked": "2026-06-06T08:57:55.327Z",
+      "last_ok": "2026-06-06T08:57:55.327Z",
+      "latency_ms": 372,
       "method_tested": "HEAD",
       "netuid": 8,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-8-taopedia-article",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/e35ventura/taopedia-articles/blob/main/content/pages/subnet_8/index.mdx",
-      "verified_at": "2026-06-06T08:24:36.856Z"
+      "verified_at": "2026-06-06T08:57:55.327Z"
     },
     {
       "auth_required": false,
@@ -127,9 +127,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:36.926Z",
-      "last_ok": "2026-06-06T08:24:36.926Z",
-      "latency_ms": 388,
+      "last_checked": "2026-06-06T08:57:55.348Z",
+      "last_ok": "2026-06-06T08:57:55.348Z",
+      "latency_ms": 372,
       "method_tested": "HEAD",
       "netuid": 8,
       "private_redirect_blocked": false,
@@ -143,7 +143,7 @@
       "surface_id": "sn-8-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/8",
-      "verified_at": "2026-06-06T08:24:36.926Z"
+      "verified_at": "2026-06-06T08:57:55.348Z"
     }
   ]
 }

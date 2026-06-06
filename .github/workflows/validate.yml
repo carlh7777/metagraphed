@@ -10,6 +10,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -34,6 +38,27 @@ jobs:
 
       - name: Build artifacts
         run: npm run build
+
+      - name: Generate R2 manifest
+        run: npm run r2:manifest
+
+      - name: Validate JSON schemas
+        run: npm run validate:schemas
+
+      - name: Validate Worker API
+        run: npm run validate:api
+
+      - name: Validate intake templates
+        run: npm run validate:intake
+
+      - name: Validate workflows
+        run: npm run validate:workflows
+
+      - name: Validate R2 manifest
+        run: npm run r2:manifest:dry-run
+
+      - name: Worker deploy dry-run
+        run: npm run worker:deploy:dry-run
 
       - name: Public-safety scan
         run: npm run scan:public-safety

@@ -88,6 +88,8 @@ Generated artifacts expose review state through:
 
 `public/metagraph/rpc-endpoints.json` lists Bittensor base-layer RPC/WSS endpoints and live probe metadata.
 
+`public/metagraph/rpc/pools.json` scores RPC/WSS endpoints for future read-only endpoint routing.
+
 `public/metagraph/coverage.json` summarizes chain coverage, curated overlays, native-only stubs, probed subnets, surfaces, and candidate counts.
 
 `public/metagraph/candidates.json` lists unverified candidate surfaces with source provenance.
@@ -105,3 +107,11 @@ Generated artifacts expose review state through:
 `public/metagraph/health/*` exposes surface health, per-subnet health, history, and badge-input data under `metagraph.sh`.
 
 `public/metagraph/adapters/*` exposes safe subnet-specific public metrics for adapter-backed pilots.
+
+`public/metagraph/search.json` exposes a compact search index for subnets, surfaces, and providers.
+
+`public/metagraph/freshness.json`, `source-health.json`, and `evidence-ledger.json` expose backend freshness, upstream source health, and public evidence records.
+
+`public/metagraph/r2-manifest.json` lists artifacts intended for versioned R2 history upload.
+
+Worker API routes under `/api/v1/*` wrap these artifacts without replacing them as canonical truth.

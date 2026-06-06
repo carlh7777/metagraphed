@@ -9,10 +9,17 @@ Use this for the product, docs, static UI, status data, badge data, health JSON,
 Expected backend routes:
 
 - `/metagraph/contracts.json`
+- `/metagraph/api-index.json`
 - `/metagraph/subnets.json`
 - `/metagraph/subnets/{netuid}.json`
 - `/metagraph/surfaces.json`
 - `/metagraph/rpc-endpoints.json`
+- `/metagraph/rpc/pools.json`
+- `/metagraph/search.json`
+- `/metagraph/freshness.json`
+- `/metagraph/source-health.json`
+- `/metagraph/evidence-ledger.json`
+- `/metagraph/r2-manifest.json`
 - `/metagraph/health/latest.json`
 - `/metagraph/health/summary.json`
 - `/metagraph/health/subnets/{netuid}.json`
@@ -23,6 +30,19 @@ Expected backend routes:
 - `/metagraph/adapters/gittensor.json`
 - `/metagraph/review/curation.json`
 - `/metagraph/review/maintainer-decisions.json`
+
+Expected Worker API routes:
+
+- `/api/v1/subnets`
+- `/api/v1/subnets/{netuid}`
+- `/api/v1/surfaces`
+- `/api/v1/providers`
+- `/api/v1/health`
+- `/api/v1/rpc/endpoints`
+- `/api/v1/rpc/pools`
+- `/api/v1/schemas`
+- `/api/v1/adapters/{slug}`
+- `/api/v1/search`
 
 ## Reserved Domains
 

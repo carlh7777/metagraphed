@@ -6,11 +6,11 @@
   "schema_version": 1,
   "slug": "sn-2",
   "summary": {
-    "avg_latency_ms": 475,
+    "avg_latency_ms": 460,
     "degraded_count": 0,
     "failed_count": 0,
-    "last_checked": "2026-06-06T08:24:36.118Z",
-    "last_ok": "2026-06-06T08:24:36.118Z",
+    "last_checked": "2026-06-06T08:57:54.438Z",
+    "last_ok": "2026-06-06T08:57:54.438Z",
     "name": "DSperse",
     "netuid": 2,
     "ok_count": 5,
@@ -27,9 +27,9 @@
       "error": null,
       "error_class": null,
       "kind": "dashboard",
-      "last_checked": "2026-06-06T08:24:35.525Z",
-      "last_ok": "2026-06-06T08:24:35.525Z",
-      "latency_ms": 289,
+      "last_checked": "2026-06-06T08:57:53.952Z",
+      "last_ok": "2026-06-06T08:57:53.952Z",
+      "latency_ms": 488,
       "method_tested": "HEAD",
       "netuid": 2,
       "private_redirect_blocked": false,
@@ -43,7 +43,7 @@
       "surface_id": "sn-2-taomarketcap-dashboard",
       "uptime_sample_ratio": 1,
       "url": "https://taomarketcap.com/subnets/2",
-      "verified_at": "2026-06-06T08:24:35.525Z"
+      "verified_at": "2026-06-06T08:57:53.952Z"
     },
     {
       "auth_required": false,
@@ -52,9 +52,9 @@
       "error": null,
       "error_class": null,
       "kind": "source-repo",
-      "last_checked": "2026-06-06T08:24:36.118Z",
-      "last_ok": "2026-06-06T08:24:36.118Z",
-      "latency_ms": 824,
+      "last_checked": "2026-06-06T08:57:54.193Z",
+      "last_ok": "2026-06-06T08:57:54.193Z",
+      "latency_ms": 632,
       "method_tested": "HEAD",
       "netuid": 2,
       "private_redirect_blocked": false,
@@ -68,7 +68,7 @@
       "surface_id": "sn-2-taomarketcap-source-repo",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/inference-labs-inc/subnet-2",
-      "verified_at": "2026-06-06T08:24:36.118Z"
+      "verified_at": "2026-06-06T08:57:54.193Z"
     },
     {
       "auth_required": false,
@@ -77,9 +77,9 @@
       "error": null,
       "error_class": null,
       "kind": "website",
-      "last_checked": "2026-06-06T08:24:35.482Z",
-      "last_ok": "2026-06-06T08:24:35.482Z",
-      "latency_ms": 120,
+      "last_checked": "2026-06-06T08:57:54.123Z",
+      "last_ok": "2026-06-06T08:57:54.123Z",
+      "latency_ms": 241,
       "method_tested": "HEAD",
       "netuid": 2,
       "private_redirect_blocked": false,
@@ -93,7 +93,7 @@
       "surface_id": "sn-2-taomarketcap-website",
       "uptime_sample_ratio": 1,
       "url": "https://subnet2.inferencelabs.com/",
-      "verified_at": "2026-06-06T08:24:35.482Z"
+      "verified_at": "2026-06-06T08:57:54.123Z"
     },
     {
       "auth_required": false,
@@ -102,9 +102,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:36.010Z",
-      "last_ok": "2026-06-06T08:24:36.010Z",
-      "latency_ms": 535,
+      "last_checked": "2026-06-06T08:57:54.309Z",
+      "last_ok": "2026-06-06T08:57:54.309Z",
+      "latency_ms": 422,
       "method_tested": "HEAD",
       "netuid": 2,
       "private_redirect_blocked": false,
@@ -118,7 +118,7 @@
       "surface_id": "sn-2-taopedia-article",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/e35ventura/taopedia-articles/blob/main/content/pages/subnet_2/index.mdx",
-      "verified_at": "2026-06-06T08:24:36.010Z"
+      "verified_at": "2026-06-06T08:57:54.309Z"
     },
     {
       "auth_required": false,
@@ -127,9 +127,9 @@
       "error": null,
       "error_class": null,
       "kind": "docs",
-      "last_checked": "2026-06-06T08:24:36.087Z",
-      "last_ok": "2026-06-06T08:24:36.087Z",
-      "latency_ms": 605,
+      "last_checked": "2026-06-06T08:57:54.438Z",
+      "last_ok": "2026-06-06T08:57:54.438Z",
+      "latency_ms": 518,
       "method_tested": "HEAD",
       "netuid": 2,
       "private_redirect_blocked": false,
@@ -143,7 +143,7 @@
       "surface_id": "sn-2-tensorplex-docs",
       "uptime_sample_ratio": 1,
       "url": "https://github.com/tensorplex-labs/subnet-docs/tree/main/data/2",
-      "verified_at": "2026-06-06T08:24:36.087Z"
+      "verified_at": "2026-06-06T08:57:54.438Z"
     }
   ]
 }
