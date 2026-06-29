@@ -90,6 +90,7 @@ import {
 import {
   canonicalCompareCachePath,
   canonicalEconomicsTrendsCachePath,
+  canonicalLeaderboardsCachePath,
   canonicalUptimeCachePath,
   configureAnalyticsRoutes,
   handleCompare,
@@ -1113,8 +1114,13 @@ export async function handleRequest(request, env = {}, ctx = {}) {
     // Deterministic per-cron-tick D1 leaderboard; edge-cache keyed on the health
     // snapshot's last_run_at (auto-busts on the next probe) like the sibling
     // analytics routes, so a polling/cross-colo burst doesn't re-run the SQL.
-    return withEdgeCache(request, ctx, env, "leaderboards", () =>
-      handleLeaderboards(request, env, url),
+    return withEdgeCache(
+      request,
+      ctx,
+      env,
+      "leaderboards",
+      () => handleLeaderboards(request, env, url),
+      canonicalLeaderboardsCachePath(url),
     );
   }
 
