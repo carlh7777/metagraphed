@@ -1652,6 +1652,50 @@ describe("handleAccountEvents", () => {
     assert.equal(body.data.limit, 50);
   });
 
+  test("rejects malformed netuid filters with 400", async () => {
+    for (const netuid of ["abc", "-1", "7.5", "", "9007199254740993"]) {
+      const res = await handleAccountEvents(
+        req(`/api/v1/accounts/${SS58}/events`),
+        emptyEnv(),
+        SS58,
+        url(`/api/v1/accounts/${SS58}/events?netuid=${netuid}`),
+      );
+      const body = await errorJson(res);
+      assert.equal(body.error.code, "invalid_param");
+    }
+  });
+
+  test("netuid filter narrows results", async () => {
+    const { env, captures } = dbWith({
+      accountEvents: [accountEventRow({ netuid: 7 })],
+    });
+    await handleAccountEvents(
+      req(`/api/v1/accounts/${SS58}/events`),
+      env,
+      SS58,
+      url(`/api/v1/accounts/${SS58}/events?netuid=7`),
+    );
+    assert.ok(
+      captures.sql.some((s) => /AND netuid = \?/.test(s)),
+      "expected netuid filter in SQL",
+    );
+  });
+
+  test("netuid and kind filters combine", async () => {
+    const { env, captures } = dbWith({
+      accountEvents: [accountEventRow({ netuid: 7, event_kind: "WeightsSet" })],
+    });
+    await handleAccountEvents(
+      req(`/api/v1/accounts/${SS58}/events`),
+      env,
+      SS58,
+      url(`/api/v1/accounts/${SS58}/events?netuid=7&kind=WeightsSet`),
+    );
+    const eventsSql = captures.sql.find((s) => /FROM account_events/.test(s));
+    assert.ok(/AND netuid = \?/.test(eventsSql));
+    assert.ok(/AND event_kind = \?/.test(eventsSql));
+  });
+
   test("kind filter narrows results", async () => {
     const { env, captures } = dbWith({
       accountEvents: [accountEventRow({ event_kind: "WeightsSet" })],

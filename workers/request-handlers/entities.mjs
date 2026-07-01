@@ -629,10 +629,11 @@ export async function handleAccount(request, env, ss58) {
 }
 
 // GET /api/v1/accounts/{ss58}/events: paginated event history (newest first),
-// optional ?kind= filter, ?limit (<=1000) / ?offset.
+// optional ?kind= / ?netuid= filters, ?limit (<=1000) / ?offset.
 export async function handleAccountEvents(request, env, ss58, url) {
   const validationError = validateQueryParams(url, [
     "kind",
+    "netuid",
     "block_start",
     "block_end",
     "limit",
@@ -640,6 +641,17 @@ export async function handleAccountEvents(request, env, ss58, url) {
     "cursor",
   ]);
   if (validationError) return analyticsQueryError(validationError);
+  const netuid = url.searchParams.get("netuid");
+  if (
+    netuid != null &&
+    (!/^\d+$/.test(netuid) || !Number.isSafeInteger(Number(netuid)))
+  ) {
+    return errorResponse(
+      "invalid_param",
+      "netuid must be a non-negative integer.",
+      400,
+    );
+  }
   // Optional block-height range filter, parity with the extrinsics and
   // chain-events feeds. Index-satisfiable via idx_account_events_hotkey and
   // idx_account_events_coldkey (each leads block_number), so a bounded range
@@ -661,6 +673,7 @@ export async function handleAccountEvents(request, env, ss58, url) {
     cursor: url.searchParams.get("cursor"),
     blockStart: blockStart.value,
     blockEnd: blockEnd.value,
+    netuid: netuid != null ? Number(netuid) : null,
   });
   return envelopeResponse(
     request,
