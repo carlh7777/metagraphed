@@ -1621,6 +1621,43 @@ describe("handleAccount", () => {
     assert.equal(body.meta.source, "chain-events");
   });
 
+  test("exposes x-metagraph-artifact-source matching meta.source", async () => {
+    const res = await handleAccount(
+      req(`/api/v1/accounts/${SS58}`),
+      emptyEnv(),
+      SS58,
+    );
+    const body = await json(res);
+    assert.equal(body.meta.source, "chain-events");
+    assert.equal(
+      res.headers.get("x-metagraph-artifact-source"),
+      body.meta.source,
+    );
+  });
+
+  test("304 still carries x-metagraph-artifact-source", async () => {
+    const first = await handleAccount(
+      req(`/api/v1/accounts/${SS58}`),
+      emptyEnv(),
+      SS58,
+    );
+    const etag = first.headers.get("etag");
+    assert.ok(etag);
+    const second = await handleAccount(
+      new Request(`https://api.metagraph.sh/api/v1/accounts/${SS58}`, {
+        headers: { "if-none-match": etag },
+      }),
+      emptyEnv(),
+      SS58,
+    );
+    assert.equal(second.status, 304);
+    assert.equal(
+      second.headers.get("x-metagraph-artifact-source"),
+      "chain-events",
+    );
+    assert.equal(second.headers.get("etag"), etag);
+  });
+
   test("happy path aggregates account_events + neurons + extrinsics activity", async () => {
     const { env } = dbWith({
       agg: {
