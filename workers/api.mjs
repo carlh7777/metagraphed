@@ -15,6 +15,7 @@ import {
   exposeCustomResponseHeaders,
   ifNoneMatchSatisfied,
   weakEtag,
+  X_METAGRAPH_ARTIFACT_SOURCE_HEADER,
 } from "./http.mjs";
 import {
   latestPointer,
@@ -1883,7 +1884,7 @@ async function handleRawArtifactRequest(
   const body = JSON.stringify(data);
   const headers = apiHeaders("standard");
   headers.set("content-type", JSON_CONTENT_TYPE);
-  headers.set("x-metagraph-artifact-source", artifact.source);
+  headers.set(X_METAGRAPH_ARTIFACT_SOURCE_HEADER, artifact.source);
   headers.set("x-metagraph-storage-tier", artifact.storage_tier);
   if (pub) {
     headers.set("x-metagraph-published-at", pub);

@@ -27,7 +27,7 @@ import {
   parsePagination,
 } from "../request-params.mjs";
 
-import { errorResponse } from "../http.mjs";
+import { errorResponse, X_METAGRAPH_ARTIFACT_SOURCE_HEADER } from "../http.mjs";
 import {
   contractVersion,
   envelopeResponse,
@@ -682,9 +682,13 @@ async function accountMeta(env, artifactPath, generatedAt) {
 }
 
 // Account routes stamp meta.source but browsers need the CORS-exposed header too.
-async function accountEnvelopeResponse(request, payload, cacheProfile = "short") {
+async function accountEnvelopeResponse(
+  request,
+  payload,
+  cacheProfile = "short",
+) {
   return envelopeResponse(request, payload, cacheProfile, {
-    "x-metagraph-artifact-source": payload.meta.source,
+    [X_METAGRAPH_ARTIFACT_SOURCE_HEADER]: payload.meta.source,
   });
 }
 
