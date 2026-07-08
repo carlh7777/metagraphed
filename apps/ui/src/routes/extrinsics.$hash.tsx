@@ -277,9 +277,10 @@ function ValidExtrinsicDetail({ hash }: { hash: string }) {
             </table>
           </div>
         ) : (
-          <p className="rounded border border-border bg-card/40 px-4 py-6 text-sm text-ink-muted">
-            No emitted events were indexed for this extrinsic.
-          </p>
+          <EmptyState
+            title="No emitted events"
+            description="No emitted events were indexed for this extrinsic."
+          />
         )}
       </SectionAnchor>
 
