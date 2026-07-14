@@ -126,6 +126,31 @@
         "https://github.com/metanova-labs/nova/blob/main/docs/VALIDATOR.md"
       ],
       "url": "https://vali-score-share-api.metanova-labs.ai/api/v1/molecules"
+    },
+    {
+      "auth_required": false,
+      "authority": "community",
+      "id": "sn-68-nova-competition-config",
+      "kind": "data-artifact",
+      "name": "NOVA competition config",
+      "notes": "Public no-auth YAML competition configuration for the SN68 NOVA drug-discovery subnet, published in the official metanova-labs/nova repository at config/config.yaml. Defines the live competition parameters miners and validators run against: protein target/antitarget selection (small-molecule and nanobody UniProt targets and clip intervals), competition weighting, bounty payout settings, and molecule/reaction requirements. Pinned to an immutable commit. Verified 200, SS58-clean.",
+      "probe": {
+        "enabled": true,
+        "expect": "any",
+        "method": "GET",
+        "timeout_ms": 10000
+      },
+      "provider": "nova",
+      "public_safe": true,
+      "review": {
+        "state": "community-submitted",
+        "submitted_by": "ultrahighsuper"
+      },
+      "source_urls": [
+        "https://github.com/metanova-labs/nova/blob/f7a313bc7d17bbd64b42c670c5c04a62d9b4599d/config/config.yaml",
+        "https://github.com/metanova-labs/nova"
+      ],
+      "url": "https://raw.githubusercontent.com/metanova-labs/nova/f7a313bc7d17bbd64b42c670c5c04a62d9b4599d/config/config.yaml"
     }
   ],
   "source_repo": "https://github.com/metanova-labs/nova",
