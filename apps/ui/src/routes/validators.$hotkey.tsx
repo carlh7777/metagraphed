@@ -11,6 +11,7 @@ import { EndpointSnippet } from "@/components/metagraphed/endpoint-snippet";
 import { QueryErrorBoundary } from "@/components/metagraphed/error-boundary";
 import { PageHero, ShareButton, SectionAnchor, CopyableCode, StatTile } from "@jsonbored/ui-kit";
 import { ValidatorHistoryChart } from "@/components/metagraphed/validator-history-chart";
+import { WatchValidatorAlert } from "@/components/metagraphed/watch-validator-alert";
 import {
   ValidatorNominatorsTable,
   type ValidatorNominatorsSearch,
@@ -284,6 +285,15 @@ function ValidatorDetail({ hotkey }: { hotkey: string }) {
             <NominatorsSection hotkey={hotkey} />
           </Suspense>
         </QueryErrorBoundary>
+      </SectionAnchor>
+
+      <SectionAnchor
+        id="watch"
+        title="Watch this validator"
+        subtitle="Alert on new delegations or stake, via the existing chain alert-triggers API."
+        tone="accent"
+      >
+        <WatchValidatorAlert hotkey={hotkey} />
       </SectionAnchor>
 
       <SectionAnchor

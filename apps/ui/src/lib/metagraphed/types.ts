@@ -3242,3 +3242,26 @@ export interface WebhookSubscriptionView {
   active: boolean;
   delivery: WebhookDeliveryStatus;
 }
+
+/**
+ * POST /api/v1/alerts/triggers response (#4984 Part 1). `owner_token` is
+ * returned exactly once here — GET/PATCH never echo it back, matching the
+ * webhook subscription secret's own once-only convention.
+ */
+export interface AlertTriggerCreated {
+  id: string;
+  name: string | null;
+  table_filter: string[] | null;
+  netuid: number | null;
+  event_kind: string | null;
+  account: string | null;
+  min_amount_tao: number | null;
+  channel: "webhook" | "email" | "telegram" | "discord";
+  destination: string;
+  active: boolean;
+  created_at: string | null;
+  updated_at: string | null;
+  last_matched_at: string | null;
+  match_count: number;
+  owner_token: string;
+}
