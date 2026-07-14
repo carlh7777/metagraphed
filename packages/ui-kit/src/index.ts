@@ -161,7 +161,12 @@ export {
   type ProfileHeroProps,
   ProfileHero,
 } from "@/components/metagraphed/profile-hero";
-export { MethodologyCallout } from "@/components/metagraphed/methodology-callout";
+export {
+  MethodologyCallout,
+  StakingRiskNote,
+  STAKING_RISK_COPY,
+  type MethodologyVariant,
+} from "@/components/metagraphed/methodology-callout";
 export {
   type BarMiniDatum,
   BarMini,

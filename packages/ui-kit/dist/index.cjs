@@ -2882,17 +2882,99 @@ function ProfileHero({
     ] }, s.label)) }) : null
   ] });
 }
+var STAKING_RISK_COPY = {
+  root: {
+    term: "Root stake",
+    short: "No principal risk \xB7 TAO-denominated",
+    long: "Root (netuid 0) stake is TAO-denominated 1:1 with no AMM. There is no alpha price leg, so principal is not exposed to subnet token price moves."
+  },
+  alpha: {
+    term: "Alpha stake",
+    short: "Price-exposed \xB7 can net-lose TAO",
+    long: "Alpha (non-root) stake is denominated in that subnet's alpha token. Positive nominal APY can still net-lose TAO when alpha price falls \u2014 yield figures never erase that risk."
+  },
+  windows: {
+    term: "Yield windows",
+    short: "Trailing window \xB7 not a forecast",
+    long: "Every yield / APY figure is labeled with its trailing window (for example 7d, 30d, 90d, or latest snapshot). Numbers annualize observed emission\xF7stake over that window \u2014 they are not a projection or a promised return."
+  },
+  methodology: {
+    term: "APY methodology",
+    short: "Emission \xF7 stake, net of take",
+    long: "Directory and detail snapshot APY annualize the latest captured epoch rate across eligible subnet memberships (server-side apy_estimate). History tiles annualize the latest daily rewards-per-1k-\u03C4 rate from neuron_daily, net of validator take. Both can swing between refreshes."
+  }
+};
+function StakingRiskNote({
+  netuid,
+  className
+}) {
+  const copy = netuid == null ? `${STAKING_RISK_COPY.root.short}. ${STAKING_RISK_COPY.alpha.short}.` : netuid === 0 ? STAKING_RISK_COPY.root.short : STAKING_RISK_COPY.alpha.short;
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    "p",
+    {
+      className: classNames(
+        "text-[10px] leading-relaxed text-ink-muted",
+        className
+      ),
+      children: copy
+    }
+  );
+}
+function SubnetSections() {
+  return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "font-mono text-[10px] uppercase tracking-widest text-ink-strong", children: "Sparklines" }),
+      /* @__PURE__ */ jsxRuntime.jsx("p", { className: "mt-1", children: "Uptime & latency sparklines plot the active health window (7d default, switchable to 30d). Each point is the mean across every tracked endpoint in that bucket \u2014 gaps mean no probe landed in the window, not zero." })
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "font-mono text-[10px] uppercase tracking-widest text-ink-strong", children: "Donuts & mosaics" }),
+      /* @__PURE__ */ jsxRuntime.jsx("p", { className: "mt-1", children: "Pool ratio comes from on-chain AMM reserves; endpoint topology counts tracked public surfaces by kind. The mosaic in Operational status colors one cell per endpoint by its last probe result." })
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "font-mono text-[10px] uppercase tracking-widest text-ink-strong", children: "Staleness" }),
+      /* @__PURE__ */ jsxRuntime.jsxs("p", { className: "mt-1", children: [
+        "Tiles show a ",
+        /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-health-warn-text", children: "stale" }),
+        " chip when the snapshot is older than the refresh budget. Visuals still render with the last known values; retry buttons re-fetch just the affected panel. Each tile carries its own",
+        " ",
+        /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-ink-strong", children: "updated \xB7 window" }),
+        " stamp so you can tell stale from missing at a glance."
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "font-mono text-[10px] uppercase tracking-widest text-ink-strong", children: "Verified vs. candidate" }),
+      /* @__PURE__ */ jsxRuntime.jsx("p", { className: "mt-1", children: "Only curated surfaces feed donuts and the topology breakdown. Unverified leads live in the Candidates tab and never count toward health, completeness, or pool ratios." })
+    ] })
+  ] });
+}
+function StakingSections() {
+  const sections = [
+    STAKING_RISK_COPY.root,
+    STAKING_RISK_COPY.alpha,
+    STAKING_RISK_COPY.windows,
+    STAKING_RISK_COPY.methodology
+  ];
+  return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: sections.map((s) => /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
+    /* @__PURE__ */ jsxRuntime.jsx("div", { className: "font-mono text-[10px] uppercase tracking-widest text-ink-strong", children: s.term }),
+    /* @__PURE__ */ jsxRuntime.jsx("p", { className: "mt-1", children: s.long })
+  ] }, s.term)) });
+}
 function MethodologyCallout({
   generatedAt,
-  windowLabel
+  windowLabel,
+  variant = "subnet"
 }) {
   const [open, setOpen] = React3.useState(false);
   const freshLine = formatFreshness(generatedAt, windowLabel);
   const freshAbs = formatFreshnessAbsolute(generatedAt);
+  const isStaking = variant === "staking";
+  const title = isStaking ? "Staking risk & yield methodology" : "Data freshness & methodology";
+  const ariaLabel = isStaking ? "Staking risk and yield methodology" : "Data freshness and methodology";
+  const body = isStaking ? /* @__PURE__ */ jsxRuntime.jsx(StakingSections, {}) : /* @__PURE__ */ jsxRuntime.jsx(SubnetSections, {});
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "aside",
     {
-      "aria-label": "Data freshness and methodology",
+      "aria-label": ariaLabel,
       className: "mb-6 rounded-lg border border-border bg-card/60",
       children: [
         /* @__PURE__ */ jsxRuntime.jsxs(
@@ -2905,7 +2987,7 @@ function MethodologyCallout({
             children: [
               /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Info, { className: "mt-0.5 size-3.5 shrink-0 text-accent" }),
               /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "min-w-0 flex-1", children: [
-                /* @__PURE__ */ jsxRuntime.jsx("span", { className: "block font-mono text-[10px] uppercase tracking-widest text-ink-muted", children: "Data freshness & methodology" }),
+                /* @__PURE__ */ jsxRuntime.jsx("span", { className: "block font-mono text-[10px] uppercase tracking-widest text-ink-muted", children: title }),
                 freshLine ? /* @__PURE__ */ jsxRuntime.jsx(
                   "span",
                   {
@@ -2913,7 +2995,7 @@ function MethodologyCallout({
                     title: freshAbs ?? void 0,
                     children: freshLine
                   }
-                ) : null
+                ) : isStaking ? /* @__PURE__ */ jsxRuntime.jsx("span", { className: "mt-0.5 block font-mono text-[10px] text-ink-muted/80", children: "Root: no principal risk \xB7 Alpha: price-exposed \xB7 windows labeled, not projected" }) : null
               ] }),
               /* @__PURE__ */ jsxRuntime.jsx(
                 lucideReact.ChevronDown,
@@ -2927,32 +3009,7 @@ function MethodologyCallout({
             ]
           }
         ),
-        open ? /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3 border-t border-border px-3 py-3 text-[11.5px] leading-relaxed text-ink-muted md:grid-cols-2", children: [
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntime.jsx("div", { className: "font-mono text-[10px] uppercase tracking-widest text-ink-strong", children: "Sparklines" }),
-            /* @__PURE__ */ jsxRuntime.jsx("p", { className: "mt-1", children: "Uptime & latency sparklines plot the active health window (7d default, switchable to 30d). Each point is the mean across every tracked endpoint in that bucket \u2014 gaps mean no probe landed in the window, not zero." })
-          ] }),
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntime.jsx("div", { className: "font-mono text-[10px] uppercase tracking-widest text-ink-strong", children: "Donuts & mosaics" }),
-            /* @__PURE__ */ jsxRuntime.jsx("p", { className: "mt-1", children: "Pool ratio comes from on-chain AMM reserves; endpoint topology counts tracked public surfaces by kind. The mosaic in Operational status colors one cell per endpoint by its last probe result." })
-          ] }),
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntime.jsx("div", { className: "font-mono text-[10px] uppercase tracking-widest text-ink-strong", children: "Staleness" }),
-            /* @__PURE__ */ jsxRuntime.jsxs("p", { className: "mt-1", children: [
-              "Tiles show a ",
-              /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-health-warn-text", children: "stale" }),
-              " ",
-              "chip when the snapshot is older than the refresh budget. Visuals still render with the last known values; retry buttons re-fetch just the affected panel. Each tile carries its own",
-              " ",
-              /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-ink-strong", children: "updated \xB7 window" }),
-              " stamp so you can tell stale from missing at a glance."
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntime.jsx("div", { className: "font-mono text-[10px] uppercase tracking-widest text-ink-strong", children: "Verified vs. candidate" }),
-            /* @__PURE__ */ jsxRuntime.jsx("p", { className: "mt-1", children: "Only curated surfaces feed donuts and the topology breakdown. Unverified leads live in the Candidates tab and never count toward health, completeness, or pool ratios." })
-          ] })
-        ] }) : null
+        open ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-3 border-t border-border px-3 py-3 text-[11.5px] leading-relaxed text-ink-muted md:grid-cols-2", children: body }) : null
       ]
     }
   );
@@ -3822,6 +3879,7 @@ exports.ProfileHero = ProfileHero;
 exports.RealtimeFreshness = RealtimeFreshness;
 exports.ReviewChip = ReviewChip;
 exports.SCOPES = SCOPES;
+exports.STAKING_RISK_COPY = STAKING_RISK_COPY;
 exports.ScrollReveal = ScrollReveal;
 exports.SearchScopeChip = SearchScopeChip;
 exports.SectionAnchor = SectionAnchor;
@@ -3840,6 +3898,7 @@ exports.SheetTrigger = SheetTrigger;
 exports.Skeleton = Skeleton;
 exports.SparkLegend = SparkLegend;
 exports.Sparkline = Sparkline;
+exports.StakingRiskNote = StakingRiskNote;
 exports.StatTile = StatTile;
 exports.StatWithSpark = StatWithSpark;
 exports.TableState = TableState;

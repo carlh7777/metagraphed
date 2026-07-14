@@ -299,9 +299,16 @@ function ValidatorDetail({ hotkey }: { hotkey: string }) {
         />
         <StatTile
           icon={Zap}
-          eyebrow="Est. APY"
+          eyebrow="Est. APY · snapshot"
           value={formatApyPct(snapshotApy)}
-          hint="snapshot · net of take"
+          hint={
+            <span className="space-y-1">
+              <span className="block">Trailing snapshot · net of take · not a forecast</span>
+              <span className="block">
+                Root: no principal risk · TAO-denominated. Alpha: price-exposed · can net-lose TAO.
+              </span>
+            </span>
+          }
           truncate={false}
           className="rounded-2xl border-border/80 bg-card/95 p-5 shadow-[0_24px_80px_-58px_rgba(15,23,42,0.45)]"
         />
@@ -310,7 +317,7 @@ function ValidatorDetail({ hotkey }: { hotkey: string }) {
       <SectionAnchor
         id="apy"
         title="Delegator yield (APY)"
-        subtitle="7d / 30d / 90d windows from daily history"
+        subtitle="Trailing 7d / 30d / 90d windows — labeled, not projected"
         tone="accent"
       >
         <ValidatorApyPanel hotkey={hotkey} take={detail.take} generatedAt={detail.captured_at} />

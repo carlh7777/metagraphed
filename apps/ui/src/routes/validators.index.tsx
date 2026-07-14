@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { z } from "zod";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { AppShell } from "@/components/metagraphed/app-shell";
-import { PageHero, ShareButton } from "@jsonbored/ui-kit";
+import { MethodologyCallout, PageHero, ShareButton } from "@jsonbored/ui-kit";
 import { ApiSourceFooter } from "@/components/metagraphed/api-source-footer";
 import { EmptyState, StaleBanner, Skeleton } from "@/components/metagraphed/states";
 import { QueryErrorBoundary } from "@/components/metagraphed/error-boundary";
@@ -15,11 +15,7 @@ import { ValidatorSubnetHeatmap } from "@/components/metagraphed/charts/validato
 import { taoCompact, FeaturedBadge } from "@/components/metagraphed/neuron-table";
 import { ValidatorGuide } from "@/components/metagraphed/validator-guide";
 import { ValidatorIdentityChip } from "@/components/metagraphed/validator-identity-chip";
-import {
-  annualizedDelegatorApyPct,
-  formatApyPct,
-  formatTakePct,
-} from "@/lib/metagraphed/validator-apy";
+import { formatApyPct, formatTakePct } from "@/lib/metagraphed/validator-apy";
 import type { GlobalValidatorSort } from "@/lib/metagraphed/types";
 
 // The full GlobalValidatorSort set the /api/v1/validators endpoint accepts.
@@ -84,6 +80,7 @@ function ValidatorsPage() {
         actions={<ShareButton />}
       />
       <ValidatorGuide />
+      <MethodologyCallout variant="staking" windowLabel="snapshot" />
       <QueryErrorBoundary>
         <Suspense fallback={<Skeleton className="h-96 w-full" />}>
           <ValidatorsTable
@@ -173,14 +170,13 @@ function ValidatorsTable({
                 <th className={TH}>Hotkey</th>
                 <th className={TH}>Coldkey</th>
                 <th className={`${TH} text-right`}>Take</th>
-                <th className={`${TH} text-right`}>Est. APY</th>
+                <th className={`${TH} text-right`}>Est. APY · snapshot</th>
                 <th className={`${TH} text-right`}>Active subnets</th>
                 <th className={`${TH} text-right`}>UIDs</th>
                 <th className={`${TH} text-right`}>Nominators</th>
                 <th className={`${TH} text-right`}>Dominance</th>
                 <th className={`${TH} text-right`}>Total stake</th>
                 <th className={`${TH} text-right`}>Total emission</th>
-                <th className={`${TH} text-right`}>Est. APY</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
@@ -189,15 +185,22 @@ function ValidatorsTable({
                   <td className="px-3 py-2 font-mono text-[11px]">
                     <div className="flex items-center gap-1.5">
                       {v.featured ? <FeaturedBadge /> : null}
-                      <Link
-                        to="/validators/$hotkey"
-                        params={{ hotkey: v.hotkey }}
-                        className="text-ink-strong hover:text-accent hover:underline"
-                        title={v.hotkey}
-                      >
-                        {shortHash(v.hotkey) ?? v.hotkey}
-                      </Link>
+                      <ValidatorIdentityChip
+                        hotkey={v.hotkey}
+                        identity={v.coldkey_identity}
+                        size={22}
+                      />
                     </div>
+                  </td>
+                  <td className="px-3 py-2 font-mono text-[11px]">
+                    <Link
+                      to="/validators/$hotkey"
+                      params={{ hotkey: v.hotkey }}
+                      className="text-ink-strong hover:text-accent hover:underline"
+                      title={v.hotkey}
+                    >
+                      {shortHash(v.hotkey) ?? v.hotkey}
+                    </Link>
                   </td>
                   <td className="px-3 py-2 font-mono text-[11px] text-ink-muted">
                     {v.coldkey ? (
@@ -211,6 +214,19 @@ function ValidatorsTable({
                       </Link>
                     ) : (
                       "—"
+                    )}
+                  </td>
+                  <td className="px-3 py-2 text-right font-mono text-[11px] tabular-nums text-ink">
+                    {formatTakePct(v.take)}
+                  </td>
+                  <td
+                    className="px-3 py-2 text-right font-mono text-[11px] tabular-nums text-ink-muted"
+                    title="Trailing snapshot · not a forecast. Root: no principal risk · Alpha: price-exposed."
+                  >
+                    {formatApyPct(
+                      v.apy_estimate != null && Number.isFinite(v.apy_estimate)
+                        ? v.apy_estimate * 100
+                        : null,
                     )}
                   </td>
                   <td className="px-3 py-2 text-right font-mono text-[11px] tabular-nums text-ink">
@@ -230,9 +246,6 @@ function ValidatorsTable({
                   </td>
                   <td className="px-3 py-2 text-right font-mono text-[11px] tabular-nums text-ink-muted">
                     {taoCompact(v.total_emission_tao)}
-                  </td>
-                  <td className="px-3 py-2 text-right font-mono text-[11px] tabular-nums text-ink-muted">
-                    {v.apy_estimate != null ? `${(v.apy_estimate * 100).toFixed(1)}%` : "—"}
                   </td>
                 </tr>
               ))}

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useQueries } from "@tanstack/react-query";
-import { MethodologyCallout } from "@jsonbored/ui-kit";
+import { MethodologyCallout, StakingRiskNote, STAKING_RISK_COPY } from "@jsonbored/ui-kit";
 import { validatorHistoryQuery } from "@/lib/metagraphed/queries";
 import {
   apyFromRewardsPer1000,
@@ -8,7 +8,7 @@ import {
   type ValidatorApyWindow,
 } from "@/lib/metagraphed/validator-apy";
 
-const WINDOWS: ValidatorApyWindow[] = ["7d", "30d", "90d"];
+const WINDOWS: Exclude<ValidatorApyWindow, "snapshot">[] = ["7d", "30d", "90d"];
 
 function latestRewards(points: Array<{ rewards_per_1000_tao?: number | null }>) {
   for (const p of points) {
@@ -18,7 +18,7 @@ function latestRewards(points: Array<{ rewards_per_1000_tao?: number | null }>) 
   return null;
 }
 
-/** Multi-window delegator APY tiles from validator history (#5245 / #2551 methodology). */
+/** Multi-window delegator APY tiles from validator history (#5245 / #2551 / #5247). */
 export function ValidatorApyPanel({
   hotkey,
   take,
@@ -63,8 +63,9 @@ export function ValidatorApyPanel({
               {anyLoading && row.apy == null ? "…" : formatApyPct(row.apy)}
             </div>
             <p className="mt-1 text-[10px] leading-relaxed text-ink-muted">
-              Net of take · daily neuron_daily rollup
+              Trailing {row.window} · net of take · not a forecast
             </p>
+            <StakingRiskNote className="mt-1.5" />
           </div>
         ))}
       </div>
@@ -74,11 +75,13 @@ export function ValidatorApyPanel({
           exist for this validator.
         </p>
       ) : null}
-      <MethodologyCallout generatedAt={generatedAt ?? undefined} windowLabel="history windows" />
+      <MethodologyCallout
+        variant="staking"
+        generatedAt={generatedAt ?? undefined}
+        windowLabel="7d / 30d / 90d"
+      />
       <p className="text-[11px] leading-relaxed text-ink-muted">
-        Delegator APY annualizes the latest daily rewards-per-1k-τ rate from neuron_daily, net of
-        validator take. Snapshot-tier emission can lag; server-side modelling (#2551) will replace
-        this client estimate.
+        {STAKING_RISK_COPY.methodology.long}
       </p>
     </div>
   );

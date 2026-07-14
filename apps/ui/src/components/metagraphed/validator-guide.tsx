@@ -30,8 +30,8 @@ const METRICS: Array<{ term: string; def: string }> = [
     def: "The validator's commission (#2548): the fraction of delegator rewards the validator keeps (0–100%). Lower take means nominators keep more of the emission flow.",
   },
   {
-    term: "Est. APY",
-    def: "Annualized delegator yield estimated from emission÷stake, net of take. On the directory this uses the latest metagraph snapshot; on a validator detail page, 7d/30d/90d windows use daily neuron_daily history. Server-side modelling (#2551) will supersede these client estimates.",
+    term: "Est. APY · snapshot",
+    def: "Trailing-snapshot annualized yield (#2551 / #5247): emission÷stake over the latest captured epoch, net of take, labeled with its window. Not a forecast. Root stake is TAO-denominated with no principal price risk; alpha stake is price-exposed and can net-lose TAO despite a positive nominal APY. History tiles on a validator detail page use explicit 7d / 30d / 90d trailing windows instead.",
   },
   {
     term: "Nominators",
@@ -43,15 +43,11 @@ const METRICS: Array<{ term: string; def: string }> = [
   },
   {
     term: "Total stake",
-    def: "The TAO backing the validator: its own stake plus TAO delegated to it by nominators. Stake sets how much weight the validator's votes carry.",
+    def: "The TAO backing the validator: its own stake plus TAO delegated to it by nominators. Stake sets how much weight the validator's votes carry. Root (netuid 0) is TAO-denominated with no AMM; alpha legs are price-exposed.",
   },
   {
     term: "Total emission",
     def: "The TAO the validator earned over the window. Emission is split between the validator and its nominators via commission — it reflects reward flow, not profit.",
-  },
-  {
-    term: "Est. APY",
-    def: "An estimated annualized yield (#2551): projects the validator's most recently captured epoch payout across a full year, using each subnet's own epoch length. It's a snapshot-based estimate, not a forecast or a guarantee — it can swing between refreshes, especially for validators concentrated on short-epoch subnets. A dash means none of the validator's subnets have a captured epoch length yet.",
   },
   {
     term: "Validator trust (Sort)",
