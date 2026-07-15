@@ -110,6 +110,7 @@ import {
   buildAccountsList,
 } from "./accounts-list.mjs";
 import {
+  buildAccountEvents,
   buildAccountSummary,
   buildAccountTransfers,
 } from "./account-events.mjs";
@@ -339,6 +340,8 @@ export const SDL = `
     account_identity_history(ss58: String!, limit: Int, offset: Int, cursor: String): AccountIdentityHistory!
     "Rank who one account transacts native TAO with, by total transfer volume, from the Balances.Transfer feed: per counterparty the sent/received/net TAO, transfer count, and last block, plus scan totals. Pass counterparty=<ss58> (must differ from ss58) to drill into a single relationship instead -- its fund-flow totals plus direction-aware transfer evidence under relationship, newest first. limit caps the ranked list (default 20) or the relationship's transfer evidence (default 50); 1-100. An address with no transfers resolves to a schema-stable zero card, never null. Mirrors GET /api/v1/accounts/{ss58}/counterparties."
     account_counterparties(ss58: String!, counterparty: String, limit: Int): AccountCounterparties!
+    "One account's first-party chain-event history (hotkey or coldkey), newest first -- each event's kind, block/index, hotkey/coldkey, netuid/uid, amount_tao/alpha_amount, and observed_at. kind filters to one ingested event kind (e.g. StakeAdded, NeuronRegistered); netuid scopes to one subnet; block_start/block_end bound the block-height range; page with limit/offset or cursor (opaque keyset from a prior response's next_cursor). An address with no matching events resolves to a schema-stable empty feed, never null. Mirrors GET /api/v1/accounts/{ss58}/events."
+    account_events(ss58: String!, kind: String, netuid: Int, limit: Int, offset: Int, cursor: String, block_start: Int, block_end: Int): AccountEvents!
     "One account's native-TAO transfer feed from the Balances.Transfer event stream, newest first -- each event's block/index, from/to, amount_tao, a direction relative to the queried address (sent = it paid, received = it was paid), and observed_at. direction narrows to sent | received only (default both); block_start/block_end bound the block-height range; page with limit/offset or cursor (opaque keyset from a prior response's next_cursor). An address with no transfers resolves to a schema-stable empty feed, never null. Mirrors GET /api/v1/accounts/{ss58}/transfers."
     account_transfers(ss58: String!, limit: Int, offset: Int, cursor: String, direction: String, block_start: Int, block_end: Int): AccountTransfers!
     "Network-wide economics time series, aggregated per UTC day across all subnets; day_count is 0 and days is empty on a cold rollup, never null. Mirrors GET /api/v1/economics/trends."
@@ -1901,6 +1904,17 @@ export const SDL = `
     extrinsic_index: Int
   }
 
+  "One account's first-party chain-event feed, keyset-paginated newest-first. Mirrors GET /api/v1/accounts/{ss58}/events' data envelope."
+  type AccountEvents {
+    schema_version: Int!
+    ss58: String!
+    event_count: Int!
+    limit: Int
+    offset: Int
+    next_cursor: String
+    events: [AccountEvent!]!
+  }
+
   "Signing-activity aggregate from the extrinsics tier, matched by signer only -- an account queried by a key that did not sign returns tx_count 0, other fields null/empty."
   type AccountActivity {
     tx_count: Int!
@@ -2183,6 +2197,7 @@ export const FIELD_COMPLEXITY = {
   account_identity: RELATIONSHIP_FIELD_COMPLEXITY,
   account_identity_history: RELATIONSHIP_FIELD_COMPLEXITY,
   account_counterparties: RELATIONSHIP_FIELD_COMPLEXITY,
+  account_events: RELATIONSHIP_FIELD_COMPLEXITY,
   account_transfers: RELATIONSHIP_FIELD_COMPLEXITY,
   blocks: RELATIONSHIP_FIELD_COMPLEXITY,
   // A single latest-only row -- but it fans out into the full hyperparameter
@@ -4465,6 +4480,73 @@ const rootValue = {
             })),
           }
         : null,
+    };
+  },
+
+  async account_events(
+    { ss58, kind, netuid, limit, offset, cursor, block_start, block_end },
+    context,
+  ) {
+    // Same SS58 validation every account_* resolver uses -- a malformed address
+    // is a GraphQL BAD_USER_INPUT error, not a silent empty feed.
+    if (!SS58_ADDRESS_PATTERN.test(ss58)) {
+      throw new GraphQLError("ss58 must be a valid SS58 address.", {
+        extensions: { code: "BAD_USER_INPUT" },
+      });
+    }
+    // Same FEED_PAGINATION bounds parsePagination applies for REST, so a GraphQL
+    // caller cannot request a wider page than the /events route allows;
+    // kind/netuid/cursor/block_start/block_end are forwarded verbatim for the
+    // route to re-parse, matching the sibling feed resolvers.
+    const safeLimit = clampLimit(limit, FEED_PAGINATION);
+    const safeOffset = clampOffset(offset);
+    const params = new URLSearchParams();
+    params.set("limit", String(safeLimit));
+    params.set("offset", String(safeOffset));
+    if (kind != null) params.set("kind", kind);
+    if (netuid != null) params.set("netuid", String(netuid));
+    if (cursor != null) params.set("cursor", cursor);
+    if (block_start != null) params.set("block_start", String(block_start));
+    if (block_end != null) params.set("block_end", String(block_end));
+    // Same tryPostgresTier(METAGRAPH_ACCOUNT_EVENTS_SOURCE) the REST handler and
+    // MCP get_account_events tool use. The account_events D1 write path is
+    // retired (#4772), so a tier miss resolves through buildAccountEvents over
+    // an empty scan -- a schema-stable empty feed, never a GraphQL error.
+    const data =
+      (await tryPostgresTier(
+        context.env,
+        postgresTierRequest(
+          context,
+          `/api/v1/accounts/${encodeURIComponent(ss58)}/events`,
+          params,
+        ),
+        "METAGRAPH_ACCOUNT_EVENTS_SOURCE",
+      )) ??
+      buildAccountEvents([], ss58, {
+        limit: safeLimit,
+        offset: safeOffset,
+        nextCursor: null,
+      });
+    return {
+      schema_version: data.schema_version ?? 1,
+      ss58: data.ss58 ?? ss58,
+      event_count: data.event_count ?? 0,
+      limit: data.limit ?? safeLimit,
+      offset: data.offset ?? safeOffset,
+      next_cursor: data.next_cursor ?? null,
+      events: (data.events ?? []).map((e) => ({
+        block_number: e.block_number ?? null,
+        event_index: e.event_index ?? null,
+        event_kind: e.event_kind ?? null,
+        hotkey: e.hotkey ?? null,
+        coldkey: e.coldkey ?? null,
+        netuid: e.netuid ?? null,
+        uid: e.uid ?? null,
+        amount_tao: e.amount_tao ?? null,
+        alpha_amount: e.alpha_amount ?? null,
+        observed_at: e.observed_at ?? null,
+        extrinsic_index: e.extrinsic_index ?? null,
+      })),
     };
   },
 
