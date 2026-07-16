@@ -90,11 +90,11 @@ class Surface(_Model):
 
 @dataclass
 class Endpoint(_Model):
+    # EndpointResource uses ``url``; ``base_url`` is agent-catalog services[] only.
     surface_id: Optional[str] = None
     netuid: Optional[int] = None
     kind: Optional[str] = None
     url: Optional[str] = None
-    base_url: Optional[str] = None
     provider: Optional[str] = None
     classification: Optional[str] = None
     monitoring_status: Optional[str] = None

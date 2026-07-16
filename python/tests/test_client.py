@@ -719,14 +719,18 @@ class FetchAllAndModelsTest(unittest.TestCase):
         self.assertEqual(endpoint.monitoring_status, "monitored")
         self.assertEqual(endpoint.raw["id"], "ep-sn-7-subnet-api")
         self.assertEqual(endpoint.raw["url"], "https://api.example.com/v1")
+        self.assertFalse(hasattr(endpoint, "base_url"))
 
     def test_endpoint_from_dict_populates_url_from_endpoint_resource(self):
+        # EndpointResource has ``url``; ``base_url`` is agent-catalog-only and
+        # must not be a typed Endpoint field (or it stays forever None).
         endpoint = Endpoint.from_dict(
             {
                 "surface_id": "sn-22-docs",
                 "netuid": 22,
                 "kind": "docs",
                 "url": "https://docs.example.com",
+                "base_url": "https://should-not-become-a-typed-field.example",
                 "provider": "desearch",
                 "classification": "reference",
                 "monitoring_status": "not_monitored",
@@ -736,6 +740,11 @@ class FetchAllAndModelsTest(unittest.TestCase):
         self.assertEqual(endpoint.url, "https://docs.example.com")
         self.assertEqual(endpoint.surface_id, "sn-22-docs")
         self.assertEqual(endpoint.kind, "docs")
+        self.assertFalse(hasattr(endpoint, "base_url"))
+        self.assertEqual(
+            endpoint.raw["base_url"],
+            "https://should-not-become-a-typed-field.example",
+        )
         self.assertIs(endpoint.raw["unknown_extra"], True)
 
     def test_agent_catalog_returns_typed_model(self):

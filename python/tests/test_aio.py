@@ -259,6 +259,7 @@ class AsyncClientTest(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(endpoint.classification, "primary")
         self.assertEqual(endpoint.monitoring_status, "monitored")
         self.assertEqual(endpoint.raw["id"], "ep-sn-7-subnet-api")
+        self.assertFalse(hasattr(endpoint, "base_url"))
 
     async def test_agent_catalog_returns_typed_model(self):
         client = self._client(
