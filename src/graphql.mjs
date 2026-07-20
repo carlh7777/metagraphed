@@ -144,6 +144,8 @@ import { loadSubnetBurn } from "./subnet-burn.mjs";
 import { loadAccountBalance, isFinneySs58Address } from "./account-balance.mjs";
 import { loadSudoKey } from "./sudo-key.mjs";
 import { loadNetworkParameters } from "./network-parameters.mjs";
+import { loadRandomnessStatus } from "./randomness.mjs";
+import { loadAddressMapping, H160_PATTERN } from "./address-mapping.mjs";
 import {
   DEFAULT_GLOBAL_VALIDATOR_SORT,
   GLOBAL_VALIDATOR_LIMIT_DEFAULT,
@@ -496,6 +498,10 @@ export const SDL = `
     sudo_key: SudoKey
     "Live global Subtensor protocol/governance parameters (TaoWeight, StakeThreshold, PendingChildKeyCooldown), read directly from chain via RPC (not the Postgres tier). Each field is independently null on its own RPC failure, schema-stable, never a GraphQL error. Mirrors GET /api/v1/network/parameters."
     network_parameters: NetworkParameters
+    "Live drand randomness-beacon status read directly from chain via RPC (not the Postgres tier): the newest and oldest stored beacon rounds and the span between them. Each field is independently null on its own RPC failure, schema-stable, never a GraphQL error. Mirrors GET /api/v1/network/randomness."
+    network_randomness: NetworkRandomness
+    "Live EVM (H160) -> Substrate (SS58) account-address mapping for a 20-byte 0x-prefixed hex address, resolved directly from chain via RPC (not the Postgres tier). ss58 is null when the address has no association or the RPC lookup fails, schema-stable, never a GraphQL error. Mirrors GET /api/v1/evm/address/{h160}."
+    evm_address(h160: String!): EvmAddressMapping
     "Recent Sudo-pallet extrinsic feed (newest first): the chain's superuser governance calls, the same shape as the extrinsics feed with call_module fixed to Sudo (so no signer/call_module args). Mirrors GET /api/v1/sudo."
     sudo(limit: Int, offset: Int, cursor: String, block: Int, call_function: String, success: Boolean): ExtrinsicList!
   }
@@ -2122,6 +2128,23 @@ export const SDL = `
     queried_at: String!
   }
 
+  "Live drand randomness-beacon status read from chain via RPC. Each field is independently null on its own RPC failure (schema-stable). Mirrors GET /api/v1/network/randomness's data envelope."
+  type NetworkRandomness {
+    schema_version: Int!
+    last_stored_round: Int
+    oldest_stored_round: Int
+    stored_round_span: Int
+    queried_at: String!
+  }
+
+  "Live EVM (H160) -> Substrate (SS58) account-address mapping read from chain via RPC. ss58 is null when the mapping cannot be resolved (schema-stable, never a GraphQL error). Mirrors GET /api/v1/evm/address/{h160}."
+  type EvmAddressMapping {
+    schema_version: Int!
+    h160: String!
+    ss58: String
+    queried_at: String!
+  }
+
   "Block-production summary (#5664) over the recent-block window. Every aggregate is null on a cold retired-D1 store (schema-stable, never a GraphQL error). Mirrors GET /api/v1/blocks/summary."
   type BlocksSummary {
     schema_version: Int!
@@ -3056,6 +3079,8 @@ export const FIELD_COMPLEXITY = {
   account_balance: LIVE_RPC_FIELD_COMPLEXITY,
   sudo_key: LIVE_RPC_FIELD_COMPLEXITY,
   network_parameters: LIVE_RPC_FIELD_COMPLEXITY,
+  network_randomness: LIVE_RPC_FIELD_COMPLEXITY,
+  evm_address: LIVE_RPC_FIELD_COMPLEXITY,
 };
 
 function fieldComplexity(fieldName) {
@@ -7112,6 +7137,29 @@ const rootValue = {
     // sets schema_version/queried_at unconditionally, so no `??` fallback is
     // needed for those.
     return loadNetworkParameters(context.env);
+  },
+  async network_randomness(_args, context) {
+    // Live chain RPC, not the Postgres tier -- reuses loadRandomnessStatus'
+    // own KV cache/TTL, matching REST's /network/randomness handler exactly.
+    // Each round field stays independently null on RPC failure (schema-stable),
+    // never a GraphQL error; schema_version/queried_at are always set.
+    return loadRandomnessStatus(context.env);
+  },
+  async evm_address({ h160 }, context) {
+    // Same H160_PATTERN validation the REST route + MCP get_evm_address_mapping
+    // use -- a malformed address is a GraphQL BAD_USER_INPUT error, not a card.
+    if (typeof h160 !== "string" || !H160_PATTERN.test(h160)) {
+      throw new GraphQLError(
+        "h160 must be a 20-byte 0x-prefixed hex address.",
+        {
+          extensions: { code: "BAD_USER_INPUT" },
+        },
+      );
+    }
+    // Live chain RPC, not the Postgres tier -- reuses loadAddressMapping's own
+    // KV cache/TTL, matching REST's /evm/address/{h160} handler exactly. ss58 is
+    // null on an unresolved mapping (schema-stable), never a GraphQL error.
+    return loadAddressMapping(context.env, h160);
   },
 };
 
